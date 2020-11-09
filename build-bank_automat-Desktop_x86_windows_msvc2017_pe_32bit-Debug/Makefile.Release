@@ -531,23 +531,7 @@ release\mainwindow.obj: ..\bank_automat\mainwindow.cpp ..\bank_automat\mainwindo
 		C:\Qt\5.15.1\msvc2019\include\QtGui\qtouchdevice.h \
 		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qtabwidget.h \
 		C:\Qt\5.15.1\msvc2019\include\QtGui\qicon.h \
-		ui_mainwindow.h \
-		C:\Qt\5.15.1\msvc2019\include\QtCore\QVariant \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\QApplication \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qapplication.h \
-		C:\Qt\5.15.1\msvc2019\include\QtCore\qcoreapplication.h \
-		C:\Qt\5.15.1\msvc2019\include\QtCore\qeventloop.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qdesktopwidget.h \
-		C:\Qt\5.15.1\msvc2019\include\QtGui\qguiapplication.h \
-		C:\Qt\5.15.1\msvc2019\include\QtGui\qinputmethod.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\QMenuBar \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qmenubar.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qmenu.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qaction.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qactiongroup.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\QStatusBar \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\qstatusbar.h \
-		C:\Qt\5.15.1\msvc2019\include\QtWidgets\QWidget
+		ui_mainwindow.h
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 
