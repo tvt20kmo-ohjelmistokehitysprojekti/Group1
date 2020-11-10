@@ -7,21 +7,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    input_string = "Syötä kortti";
-    card_number = 0;
-    card_pin = 0;
-    input_begin = true;
-    input_type = INPUT_CARD_NUMBER;
-    string_size = CARD_NUMBER_SIZE;
+    card_number = "";
+    card_pin = "";
+    resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
 
-    ui->LabelCardInput->setText(input_string);
-
-    initMainButtons();
+    initMainButtons(); 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    ui = nullptr;
 }
 
 void MainWindow::initMainButtons()
@@ -39,6 +35,8 @@ void MainWindow::initMainButtons()
 
     connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
     connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));
+
+    connect(&connector, &Network::setRespose, this, &MainWindow::netWorkRequest);
 }
 
 void MainWindow::digitClick()
@@ -59,15 +57,19 @@ void MainWindow::digitClick()
     ui->LabelCardInput->setText(input_string);
 }
 
-void MainWindow::stopClick()
+void MainWindow::resetInput(const QString &text, quint8 _type, quint32 _size)
 {
     ui->LabelCardInput->setStyleSheet("background-color: white; color: gray;");
-    input_string = "Syötä kortti";
-    input_type = INPUT_CARD_NUMBER;
-    string_size = CARD_NUMBER_SIZE;
+    input_type = _type;
+    string_size = _size;
     input_begin = true;
 
-    ui->LabelCardInput->setText(input_string);
+    ui->LabelCardInput->setText(text);
+}
+
+void MainWindow::stopClick()
+{
+    resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
 }
 
 void MainWindow::okClick()
@@ -75,21 +77,20 @@ void MainWindow::okClick()
     switch(input_type)
     {
         case INPUT_CARD_NUMBER:
-            card_number = input_string.toUInt();
-
-            ui->LabelCardInput->setStyleSheet("background-color: white; color: gray;");
-            input_string = "Syötä pin";
-            input_type = INPUT_PIN_CODE;
-            string_size = PIN_NUMBER_SIZE;
-            input_begin = true;
-
-            ui->LabelCardInput->setText(input_string);
+            card_number = input_string;
+            resetInput("Syötä Pin", INPUT_PIN_CODE, PIN_NUMBER_SIZE);
             break;
 
         case INPUT_PIN_CODE:
-            card_pin = input_string.toUInt();
-
-            //
+            card_pin = input_string;
+            connector.cardLogin(card_number, card_pin);
+            resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
             break;
     }
+}
+
+void MainWindow::netWorkRequest(QString request)
+{
+    ui->LabelNetWork->setStyleSheet("color: red;");
+    ui->LabelNetWork->setText(request);
 }
