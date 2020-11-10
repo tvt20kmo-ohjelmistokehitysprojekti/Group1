@@ -7,11 +7,25 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    card_string = "Syötä kortti";
+    input_string = "Syötä kortti";
     card_number = 0;
     card_pin = 0;
-    no_string = true;
+    input_begin = true;
+    input_type = INPUT_CARD_NUMBER;
+    string_size = CARD_NUMBER_SIZE;
 
+    ui->LabelCardInput->setText(input_string);
+
+    initMainButtons();
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::initMainButtons()
+{
     connect(ui->Btn_0, SIGNAL(pressed()), this, SLOT(digitClick()));
     connect(ui->Btn_1, SIGNAL(pressed()), this, SLOT(digitClick()));
     connect(ui->Btn_2, SIGNAL(pressed()), this, SLOT(digitClick()));
@@ -24,38 +38,58 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->Btn_9, SIGNAL(pressed()), this, SLOT(digitClick()));
 
     connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
-
-    ui->LabelCardInput->setText(card_string);
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
+    connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));
 }
 
 void MainWindow::digitClick()
 {
-    if (card_string.size() == MAX_CARD_SIZE) return;
+    if (input_string.size() == string_size) return;
 
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     QString digit = clickedButton->text();
 
-    if (no_string)
+    if (input_begin)
     {
         ui->LabelCardInput->setStyleSheet("background-color: white; color: black;");
-        card_string = "";
-        no_string = false;
+        input_string = "";
+        input_begin = false;
     }
 
-    card_string += digit;
-    ui->LabelCardInput->setText(card_string);
+    input_string += digit;
+    ui->LabelCardInput->setText(input_string);
 }
 
 void MainWindow::stopClick()
 {
     ui->LabelCardInput->setStyleSheet("background-color: white; color: gray;");
-    card_string = "Syötä kortti";
-    no_string = true;
+    input_string = "Syötä kortti";
+    input_type = INPUT_CARD_NUMBER;
+    string_size = CARD_NUMBER_SIZE;
+    input_begin = true;
 
-    ui->LabelCardInput->setText(card_string);
+    ui->LabelCardInput->setText(input_string);
+}
+
+void MainWindow::okClick()
+{
+    switch(input_type)
+    {
+        case INPUT_CARD_NUMBER:
+            card_number = input_string.toUInt();
+
+            ui->LabelCardInput->setStyleSheet("background-color: white; color: gray;");
+            input_string = "Syötä pin";
+            input_type = INPUT_PIN_CODE;
+            string_size = PIN_NUMBER_SIZE;
+            input_begin = true;
+
+            ui->LabelCardInput->setText(input_string);
+            break;
+
+        case INPUT_PIN_CODE:
+            card_pin = input_string.toUInt();
+
+            //
+            break;
+    }
 }

@@ -1,8 +1,11 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#define MAX_CARD_SIZE     6
-#define MAX_PIN_SIZE      4
+#define CARD_NUMBER_SIZE     6
+#define PIN_NUMBER_SIZE      4
+
+#define INPUT_CARD_NUMBER 0
+#define INPUT_PIN_CODE    1
 
 #include <QMainWindow>
 
@@ -21,12 +24,17 @@ public:
 private slots:
     void digitClick();
     void stopClick();
+    void okClick();
 
 private:
+    void initMainButtons();
+
     Ui::MainWindow *ui;
-    QString card_string;
-    qint32  card_number;
-    qint32  card_pin;
-    bool    no_string;
+    QString  input_string;
+    quint32  card_number;
+    quint32  card_pin;
+    quint8   input_type;
+    qint32   string_size;
+    bool     input_begin;
 };
 #endif // MAINWINDOW_H
