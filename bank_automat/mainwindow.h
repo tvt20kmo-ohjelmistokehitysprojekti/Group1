@@ -4,11 +4,13 @@
 #define CARD_NUMBER_SIZE     6
 #define PIN_NUMBER_SIZE      4
 
-#define INPUT_CARD_NUMBER    0
-#define INPUT_PIN_CODE       1
+#define INPUT_NONE           0
+#define INPUT_CARD_NUMBER    1
+#define INPUT_PIN_CODE       2
 
 #include <QMainWindow>
 #include <QRegularExpression>
+#include <QDebug>
 
 #include "network.h"
 
@@ -28,11 +30,13 @@ private slots:
     void digitClick();
     void stopClick();
     void okClick();
+    void loginClick();
     void netWorkRequest(QString request);
 
 private:
     void initMainButtons();
     void resetInput(const QString &text, quint8 _type, quint32 _size);
+    bool eventFilter(QObject *object, QEvent *event);
 
     Ui::MainWindow *ui;
     Network        connector;
@@ -42,6 +46,5 @@ private:
     QString  card_pin;
     quint8   input_type;
     qint32   string_size;
-    bool     input_begin;
 };
 #endif // MAINWINDOW_H

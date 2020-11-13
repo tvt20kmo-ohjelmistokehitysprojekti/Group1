@@ -9,8 +9,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     card_number = "";
     card_pin = "";
-    resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
+    resetInput("", INPUT_NONE, CARD_NUMBER_SIZE);
     ui->stackedWidget->setCurrentIndex(0);
+
+    ui->LabelCardInput->installEventFilter(this);
+    ui->LabelPinInput->installEventFilter(this);
 
     initMainButtons(); 
 }
@@ -31,41 +34,67 @@ void MainWindow::initMainButtons()
 
     connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
     connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));
+    connect(ui->Btn_login, SIGNAL(pressed()), this, SLOT(loginClick()));
 
     connect(&connector, &Network::setRespose, this, &MainWindow::netWorkRequest);
 }
 
+bool MainWindow::eventFilter(QObject *object, QEvent *event)
+{
+    if (event->type() == QEvent::FocusIn)
+    {
+        if (object == ui->LabelCardInput && input_type != INPUT_CARD_NUMBER)
+        {
+            resetInput(card_number, INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
+        }
+        if (object == ui->LabelPinInput && input_type != INPUT_PIN_CODE)
+        {
+            resetInput(card_pin, INPUT_PIN_CODE, PIN_NUMBER_SIZE);
+        }
+    }
+    return false;
+}
+
 void MainWindow::digitClick()
 {
-    if (input_string.size() == string_size) return;
+    if (input_string.size() == string_size)
+    {
+        input_type = INPUT_NONE;
+        return;
+    }
 
     QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
     QString digit = clickedButton->text();
 
-    if (input_begin)
-    {
-        ui->LabelCardInput->setStyleSheet("background-color: white; color: black;");
-        input_string = "";
-        input_begin = false;
-    }
-
     input_string += digit;
-    ui->LabelCardInput->setText(input_string);
+
+    switch(input_type)
+    {
+        case INPUT_CARD_NUMBER:
+            ui->LabelCardInput->setFocus();
+            ui->LabelCardInput->setText(input_string);
+            break;
+        case INPUT_PIN_CODE:
+            ui->LabelPinInput->setFocus();
+            ui->LabelPinInput->setText(input_string);
+            break;
+    }
 }
 
 void MainWindow::resetInput(const QString &text, quint8 _type, quint32 _size)
 {
-    ui->LabelCardInput->setStyleSheet("background-color: white; color: gray;");
+    input_string = text;
     input_type = _type;
     string_size = _size;
-    input_begin = true;
-
-    ui->LabelCardInput->setText(text);
 }
 
 void MainWindow::stopClick()
 {
-    resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
+    card_number = "";
+    card_pin = "";
+    ui->LabelCardInput->setText("");
+    ui->LabelPinInput->setText("");
+    resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
 }
 
 void MainWindow::okClick()
@@ -73,20 +102,27 @@ void MainWindow::okClick()
     switch(input_type)
     {
         case INPUT_CARD_NUMBER:
-            card_number = input_string;
-            resetInput("Syötä Pin", INPUT_PIN_CODE, PIN_NUMBER_SIZE);
+            ui->Btn_login->setFocus();
+            resetInput(card_pin, INPUT_NONE, PIN_NUMBER_SIZE);
             break;
 
         case INPUT_PIN_CODE:
-            card_pin = input_string;
-            connector.cardLogin(card_number, card_pin);
-            resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
+            ui->Btn_login->setFocus();
+            resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
             break;
     }
 }
 
+void MainWindow::loginClick()
+{
+    card_number = ui->LabelCardInput->text();
+    card_pin = ui->LabelPinInput->text();
+
+    connector.cardLogin(card_number, card_pin);
+}
+
 void MainWindow::netWorkRequest(QString request)
 {
-    ui->LabelNetWork->setStyleSheet("color: red;");
-    ui->LabelNetWork->setText(request);
+    ui->Label_error->setStyleSheet("color: red;");
+    ui->Label_error->setText(request);
 }
