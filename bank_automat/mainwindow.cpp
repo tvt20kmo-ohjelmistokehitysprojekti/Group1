@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     card_number = "";
     card_pin = "";
     resetInput("Syötä Kortti", INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
+    ui->stackedWidget->setCurrentIndex(0);
 
     initMainButtons(); 
 }
@@ -22,16 +23,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::initMainButtons()
 {
-    connect(ui->Btn_0, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_1, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_2, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_3, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_4, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_5, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_6, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_7, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_8, SIGNAL(pressed()), this, SLOT(digitClick()));
-    connect(ui->Btn_9, SIGNAL(pressed()), this, SLOT(digitClick()));
+    QList<QPushButton*> temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_\\d"));
+    for(auto &i: temp_list)
+    {
+        connect(i, SIGNAL(pressed()), this, SLOT(digitClick()));
+    }
 
     connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
     connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));

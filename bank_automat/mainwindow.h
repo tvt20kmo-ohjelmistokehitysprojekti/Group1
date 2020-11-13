@@ -8,6 +8,7 @@
 #define INPUT_PIN_CODE       1
 
 #include <QMainWindow>
+#include <QRegularExpression>
 
 #include "network.h"
 
