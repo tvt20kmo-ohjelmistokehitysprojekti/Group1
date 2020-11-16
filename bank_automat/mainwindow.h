@@ -33,6 +33,8 @@ private slots:
     void loginClick();
     void netWorkRequest(QString request);
 
+    void on_label_4_linkActivated(const QString &link);
+
 private:
     void initMainButtons();
     void resetInput(const QString &text, quint8 _type, quint32 _size);

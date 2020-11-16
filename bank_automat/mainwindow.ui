@@ -41,10 +41,10 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>10</x>
       <y>0</y>
       <width>911</width>
-      <height>651</height>
+      <height>641</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -59,15 +59,11 @@
       <height>0</height>
      </size>
     </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton 
 {
-	font-family: Consolas;
+	
+	font: 16pt &quot;Maiandra GD&quot;;
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
 	border-style: solid;
 	border-color: black;
@@ -77,7 +73,8 @@
 
 QLabel 
 {
-	font-family: Consolas;
+	
+	font: 16pt &quot;Maiandra GD&quot;;
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
@@ -90,7 +87,7 @@ QLabel:focus
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="gridLayoutWidget">
@@ -123,11 +120,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>8</string>
@@ -154,11 +148,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>5</string>
@@ -185,11 +176,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>9</string>
@@ -216,11 +204,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>4</string>
@@ -247,11 +232,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>2</string>
@@ -278,11 +260,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>1</string>
@@ -309,11 +288,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>3</string>
@@ -340,11 +316,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>6</string>
@@ -371,11 +344,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>7</string>
@@ -402,11 +372,8 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
          </property>
          <property name="text">
           <string>0</string>
@@ -433,14 +400,8 @@ QLabel:focus
            <height>40</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.5, stop: 0 white, stop: 1 red);</string>
+          <string notr="true">background-color: rgb(218, 0, 0);</string>
          </property>
          <property name="text">
           <string>STOP</string>
@@ -467,14 +428,9 @@ QLabel:focus
            <height>0</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <family>Consolas</family>
-           <pointsize>20</pointsize>
-          </font>
-         </property>
          <property name="styleSheet">
-          <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.5, stop: 0 white, stop: 1 green);</string>
+          <string notr="true">
+background-color: rgb(52, 225, 13);</string>
          </property>
          <property name="text">
           <string>OK</string>
@@ -510,12 +466,6 @@ QLabel:focus
         <height>60</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
@@ -548,14 +498,6 @@ color : gray;</string>
         <height>51</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>26</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="styleSheet">
        <string notr="true">border-style: none;</string>
       </property>
@@ -569,20 +511,16 @@ color : gray;</string>
      <widget class="QPushButton" name="Btn_login">
       <property name="geometry">
        <rect>
-        <x>630</x>
+        <x>670</x>
         <y>440</y>
         <width>201</width>
         <height>41</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 0.5, stop: 0 white, stop: 1 lightblue);</string>
+       <string notr="true">background-color: rgb(0, 170, 255);
+
+alternate-background-color: rgb(85, 170, 255);</string>
       </property>
       <property name="text">
        <string>KIRJAUDU</string>
@@ -615,12 +553,6 @@ color : gray;</string>
         <height>60</height>
        </size>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>20</pointsize>
-       </font>
-      </property>
       <property name="mouseTracking">
        <bool>false</bool>
       </property>
@@ -649,17 +581,9 @@ color : gray;</string>
        <rect>
         <x>80</x>
         <y>210</y>
-        <width>131</width>
+        <width>151</width>
         <height>21</height>
        </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">border-style: none;</string>
@@ -680,14 +604,6 @@ color : gray;</string>
         <height>21</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="styleSheet">
        <string notr="true">border-style: none;</string>
       </property>
@@ -707,14 +623,6 @@ color : gray;</string>
         <height>51</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <family>Consolas</family>
-        <pointsize>16</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
       <property name="styleSheet">
        <string notr="true">border-style: none;</string>
       </property>
@@ -726,8 +634,146 @@ color : gray;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2"/>
-    <widget class="QWidget" name="page_3"/>
+    <widget class="QWidget" name="page_2">
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>20</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border: none;</string>
+      </property>
+      <property name="lineWidth">
+       <number>0</number>
+      </property>
+      <property name="text">
+       <string>VALITSE TILI</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_Depit">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>100</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 255);</string>
+      </property>
+      <property name="text">
+       <string>DEPIT</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_CREDIT">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>170</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(241, 161, 0);</string>
+      </property>
+      <property name="text">
+       <string>CREDIT</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_3">
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>20</y>
+        <width>221</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: none;</string>
+      </property>
+      <property name="text">
+       <string>VALITSE TOIMINTO</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_NOSTO">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>100</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>NOSTO</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_SALDO">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>170</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>SALDO</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_EVENTS">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>240</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>TAPAHTUMAT</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btn_PayCredit">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>310</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>CREDITIN MAKSU</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_4"/>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
