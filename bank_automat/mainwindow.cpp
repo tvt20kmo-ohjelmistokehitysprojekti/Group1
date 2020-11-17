@@ -126,3 +126,8 @@ void MainWindow::netWorkRequest(QString request)
     ui->Label_error->setStyleSheet("color: red;");
     ui->Label_error->setText(request);
 }
+
+void MainWindow::on_label_4_linkActivated(const QString &link)
+{
+
+}
