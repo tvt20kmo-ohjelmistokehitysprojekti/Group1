@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //setStyleSheet("QLabel")
 
     card_number = "";
     card_pin = "";
@@ -125,4 +126,9 @@ void MainWindow::netWorkRequest(QString request)
 {
     ui->Label_error->setStyleSheet("color: red;");
     ui->Label_error->setText(request);
+}
+
+void MainWindow::on_label_4_linkActivated(const QString &link)
+{
+
 }
