@@ -50,7 +50,15 @@ public:
     QLabel *Label_error;
     QWidget *page_2;
     QLabel *label_4;
+    QPushButton *btn_Depit;
+    QPushButton *btn_CREDIT;
     QWidget *page_3;
+    QLabel *label_5;
+    QPushButton *btn_NOSTO;
+    QPushButton *btn_SALDO;
+    QPushButton *btn_EVENTS;
+    QPushButton *btn_PayCredit;
+    QWidget *page_4;
     QMenuBar *menubar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -70,7 +78,7 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         stackedWidget = new QStackedWidget(centralwidget);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
-        stackedWidget->setGeometry(QRect(10, 10, 911, 641));
+        stackedWidget->setGeometry(QRect(10, 0, 911, 641));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -291,13 +299,48 @@ public:
         page_2->setObjectName(QString::fromUtf8("page_2"));
         label_4 = new QLabel(page_2);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(400, 30, 131, 41));
+        label_4->setGeometry(QRect(400, 20, 131, 41));
         label_4->setStyleSheet(QString::fromUtf8("border: none;"));
         label_4->setLineWidth(0);
+        btn_Depit = new QPushButton(page_2);
+        btn_Depit->setObjectName(QString::fromUtf8("btn_Depit"));
+        btn_Depit->setGeometry(QRect(360, 100, 211, 31));
+        btn_Depit->setStyleSheet(QString::fromUtf8("background-color: rgb(0, 170, 255);"));
+        btn_CREDIT = new QPushButton(page_2);
+        btn_CREDIT->setObjectName(QString::fromUtf8("btn_CREDIT"));
+        btn_CREDIT->setGeometry(QRect(360, 170, 211, 31));
+        btn_CREDIT->setStyleSheet(QString::fromUtf8("background-color: rgb(241, 161, 0);"));
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QString::fromUtf8("page_3"));
+        label_5 = new QLabel(page_3);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(360, 20, 221, 41));
+        label_5->setStyleSheet(QString::fromUtf8("border-color: none;"));
+        btn_NOSTO = new QPushButton(page_3);
+        btn_NOSTO->setObjectName(QString::fromUtf8("btn_NOSTO"));
+        btn_NOSTO->setGeometry(QRect(360, 100, 211, 31));
+        btn_NOSTO->setStyleSheet(QString::fromUtf8("selection-color: rgb(0, 170, 255);\n"
+"background-color: rgb(255, 255, 255);"));
+        btn_SALDO = new QPushButton(page_3);
+        btn_SALDO->setObjectName(QString::fromUtf8("btn_SALDO"));
+        btn_SALDO->setGeometry(QRect(360, 170, 211, 31));
+        btn_SALDO->setStyleSheet(QString::fromUtf8("selection-color: rgb(0, 170, 255);\n"
+"background-color: rgb(255, 255, 255);"));
+        btn_EVENTS = new QPushButton(page_3);
+        btn_EVENTS->setObjectName(QString::fromUtf8("btn_EVENTS"));
+        btn_EVENTS->setGeometry(QRect(360, 240, 211, 31));
+        btn_EVENTS->setStyleSheet(QString::fromUtf8("selection-color: rgb(0, 170, 255);\n"
+"background-color: rgb(255, 255, 255);"));
+        btn_PayCredit = new QPushButton(page_3);
+        btn_PayCredit->setObjectName(QString::fromUtf8("btn_PayCredit"));
+        btn_PayCredit->setGeometry(QRect(360, 310, 211, 31));
+        btn_PayCredit->setStyleSheet(QString::fromUtf8("selection-color: rgb(0, 170, 255);\n"
+"background-color: rgb(255, 255, 255);"));
         stackedWidget->addWidget(page_3);
+        page_4 = new QWidget();
+        page_4->setObjectName(QString::fromUtf8("page_4"));
+        stackedWidget->addWidget(page_4);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -306,7 +349,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -335,6 +378,13 @@ public:
         label_3->setText(QCoreApplication::translate("MainWindow", "KORTIN ID", nullptr));
         Label_error->setText(QString());
         label_4->setText(QCoreApplication::translate("MainWindow", "VALITSE TILI", nullptr));
+        btn_Depit->setText(QCoreApplication::translate("MainWindow", "DEPIT", nullptr));
+        btn_CREDIT->setText(QCoreApplication::translate("MainWindow", "CREDIT", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "VALITSE TOIMINTO", nullptr));
+        btn_NOSTO->setText(QCoreApplication::translate("MainWindow", "NOSTO", nullptr));
+        btn_SALDO->setText(QCoreApplication::translate("MainWindow", "SALDO", nullptr));
+        btn_EVENTS->setText(QCoreApplication::translate("MainWindow", "TAPAHTUMAT", nullptr));
+        btn_PayCredit->setText(QCoreApplication::translate("MainWindow", "CREDITIN MAKSU", nullptr));
     } // retranslateUi
 
 };
