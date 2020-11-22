@@ -11,6 +11,7 @@
 #include <QMainWindow>
 #include <QRegularExpression>
 #include <QDebug>
+#include <QPixmap>
 
 #include "network.h"
 
