@@ -131,3 +131,8 @@ void MainWindow::on_label_4_linkActivated(const QString &link)
 {
 
 }
+
+void MainWindow::on_btn_TAKAISIN_clicked()
+{
+
+}
