@@ -36,6 +36,12 @@ private slots:
 
     void on_label_4_linkActivated(const QString &link);
 
+    void on_btn_TAKAISIN_clicked();
+
+    void on_Btn_login_clicked();
+
+    void on_btn_NOSTO_clicked();
+
 private:
     void initMainButtons();
     void resetInput(const QString &text, quint8 _type, quint32 _size);
