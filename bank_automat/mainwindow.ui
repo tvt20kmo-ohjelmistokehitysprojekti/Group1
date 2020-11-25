@@ -87,9 +87,9 @@ QLabel:focus
 }</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
-    <widget class="QWidget" name="page">
+    <widget class="QWidget" name="login_page">
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
@@ -634,11 +634,11 @@ color : gray;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_2">
+    <widget class="QWidget" name="tili_page">
      <widget class="QLabel" name="label_4">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>390</x>
         <y>20</y>
         <width>131</width>
         <height>41</height>
@@ -654,10 +654,10 @@ color : gray;</string>
        <string>VALITSE TILI</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_Depit">
+     <widget class="QPushButton" name="btn_Debit">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>100</y>
         <width>211</width>
         <height>31</height>
@@ -673,7 +673,7 @@ color : gray;</string>
      <widget class="QPushButton" name="btn_CREDIT">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>170</y>
         <width>211</width>
         <height>31</height>
@@ -687,11 +687,11 @@ color : gray;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_3">
+    <widget class="QWidget" name="toiminto_page">
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>20</y>
         <width>221</width>
         <height>41</height>
@@ -707,7 +707,7 @@ color : gray;</string>
      <widget class="QPushButton" name="btn_NOSTO">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>100</y>
         <width>211</width>
         <height>31</height>
@@ -724,7 +724,7 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="btn_SALDO">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>170</y>
         <width>211</width>
         <height>31</height>
@@ -741,7 +741,7 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="btn_EVENTS">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>240</y>
         <width>211</width>
         <height>31</height>
@@ -758,7 +758,7 @@ background-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="btn_PayCredit">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>350</x>
         <y>310</y>
         <width>211</width>
         <height>31</height>
@@ -772,8 +772,25 @@ background-color: rgb(255, 255, 255);</string>
        <string>CREDITIN MAKSU</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="btn_back_toiminto">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>480</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>TAKAISIN</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="page_4">
+    <widget class="QWidget" name="nosto_page">
      <widget class="QLabel" name="label_6">
       <property name="geometry">
        <rect>
@@ -1290,11 +1307,11 @@ background-color: rgb(52, 225, 13);</string>
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="btn_TAKAISIN">
+     <widget class="QPushButton" name="btn_back_nosto">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>410</y>
+        <x>140</x>
+        <y>480</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -1308,7 +1325,7 @@ background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_5">
+    <widget class="QWidget" name="saldo_page">
      <widget class="QLabel" name="label_7">
       <property name="geometry">
        <rect>
@@ -1367,11 +1384,11 @@ background-color: rgb(255, 255, 255);</string>
        <string>euroa</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_TAKAISIN_2">
+     <widget class="QPushButton" name="btn_back_saldo">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>410</y>
+        <x>140</x>
+        <y>480</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -1385,7 +1402,7 @@ background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="page_6">
+    <widget class="QWidget" name="tapaht_page">
      <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
@@ -1402,11 +1419,11 @@ background-color: rgb(255, 255, 255);</string>
        <string>TILITAPAHTUMAT</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btn_TAKAISIN_3">
+     <widget class="QPushButton" name="btn_back_tapaht">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>410</y>
+        <x>140</x>
+        <y>480</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -1418,6 +1435,483 @@ background-color: rgb(255, 255, 255);</string>
       <property name="text">
        <string>TAKAISIN</string>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="creditmaksu_page">
+     <widget class="QPushButton" name="btn_back_creditP">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>480</y>
+        <width>211</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>TAKAISIN</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>30</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: none;</string>
+      </property>
+      <property name="text">
+       <string>CREDITIN TAKAISINMAKSU</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>120</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: none;</string>
+      </property>
+      <property name="text">
+       <string>MAKSETTAVAA JÄLJELLÄ</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>670</x>
+        <y>120</y>
+        <width>61</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: none;</string>
+      </property>
+      <property name="text">
+       <string>euroa</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>120</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Maiandra GD</family>
+        <pointsize>16</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">	font: 16pt &quot;Maiandra GD&quot;;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	border-radius: 5px;</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>210</y>
+        <width>301</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: none;</string>
+      </property>
+      <property name="text">
+       <string>SYÖTÄ MAKSETTAVA SUMMA</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="insert_Amount_2">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>260</y>
+        <width>281</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color : white; 
+color : gray;
+	font: 16pt &quot;Maiandra GD&quot;;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	border-radius: 5px;</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>210</y>
+        <width>301</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="2" column="2">
+        <widget class="QPushButton" name="Btn_40">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>8</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="Btn_41">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QPushButton" name="Btn_42">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>9</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QPushButton" name="Btn_43">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>4</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="Btn_44">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="Btn_45">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="Btn_46">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="Btn_47">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>6</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="Btn_48">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>7</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QPushButton" name="Btn_49">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="Btn_STOP_5">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 0);</string>
+         </property>
+         <property name="text">
+          <string>&lt;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="3">
+        <widget class="QPushButton" name="Btn_OK_5">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>80</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+background-color: rgb(52, 225, 13);</string>
+         </property>
+         <property name="text">
+          <string>OK</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
