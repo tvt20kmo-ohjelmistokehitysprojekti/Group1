@@ -2,4 +2,5 @@
     <qresource prefix="/fonts">
         <file alias="SquadaOne">SquadaOne-Regular.ttf</file>
     </qresource>
+    <qresource prefix="/styles"/>
 </RCC>

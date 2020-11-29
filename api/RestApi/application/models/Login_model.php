@@ -2,28 +2,17 @@
 
 class Login_model extends CI_model
 {
-    function get_balance($card_id)
+    function login_card($card_number, $card_pin)
     {
-      if ($card_id == NULL) return FALSE;
+        // Build SQl-query to get data from database
+        $this->db->select('card.card_id, card.type, user.*');
+        $this->db->from('user');
+        $this->db->join('card', 'card.user_id = user.user_id', 'inner');
+        $this->db->where('card.number', $card_number);
+        $this->db->where('card.pin', $card_pin);
 
-      $this->db->select('account.balance, account.id, card.account, card.id');
-      $this->db->from('account');
-      $this->db->join('card', 'card.account = account.id', 'inner');
-      $this->db->where('card.id', $card_id);
-
-      return array_column($this->db->get()->result(), 'balance');
-    }
-
-    function withdraw_money($card_id, $amount)
-    {
-      if ($card_id == NULL) return FALSE;
-
-      $sql = "CALL withdraw(".$card_id.",".$amount.");";
-      $query = $this->db->query($sql);
-      $result = $query->result();
-
-      $query->free_result();
-
-      return array_column($result, 'ret');
+        // Return result as JSON-object, if card not found, database returns empty array
+        $result = $this->db->get()->row();
+        return $result;
     }
 }

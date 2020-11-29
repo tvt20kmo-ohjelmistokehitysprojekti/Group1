@@ -6,17 +6,19 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //setStyleSheet("QLabel")
 
-    card_number = "";
-    card_pin = "";
-    resetInput("", INPUT_NONE, CARD_NUMBER_SIZE);
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->loginPage->setNetwork(&connector);
+    ui->saldoPage->setNetwork(&connector);
 
-    ui->LabelCardInput->installEventFilter(this);
-    ui->LabelPinInput->installEventFilter(this);
+    connect(ui->loginPage, &LoginPage::changePage, this, &MainWindow::changePage);
+    connect(ui->loginPage, &LoginPage::sendData, this, &MainWindow::storeData);
 
-    initMainButtons(); 
+    connect(ui->menuPage, &MenuPage::changePage, this, &MainWindow::changePage);
+    connect(ui->menuPage, &MenuPage::logOut, this, &MainWindow::logOut);
+
+    connect(ui->saldoPage, &SaldoPage::changePage, this, &MainWindow::changePage);
+
+    changePage(Page::loginPage);
 }
 
 MainWindow::~MainWindow()
@@ -25,110 +27,21 @@ MainWindow::~MainWindow()
     ui = nullptr;
 }
 
-void MainWindow::initMainButtons()
+void MainWindow::changePage(qint32 page)
 {
-    QList<QPushButton*> temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_\\d"));
-    for(auto &i: temp_list)
-    {
-        connect(i, SIGNAL(pressed()), this, SLOT(digitClick()));
-    }
-
-    connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
-    connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));
-    connect(ui->Btn_login, SIGNAL(pressed()), this, SLOT(loginClick()));
-
-    connect(&connector, &Network::setRespose, this, &MainWindow::netWorkRequest);
+    ui->stackedWidget->setCurrentIndex(page);
 }
 
-bool MainWindow::eventFilter(QObject *object, QEvent *event)
+void MainWindow::storeData(const QVariantMap &_data)
 {
-    if (event->type() == QEvent::FocusIn)
-    {
-        if (object == ui->LabelCardInput && input_type != INPUT_CARD_NUMBER)
-        {
-            resetInput(card_number, INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
-        }
-        if (object == ui->LabelPinInput && input_type != INPUT_PIN_CODE)
-        {
-            resetInput(card_pin, INPUT_PIN_CODE, PIN_NUMBER_SIZE);
-        }
-    }
-    return false;
+    data = _data;
+    QVariantMap result = data["result"].toMap();
+
+    ui->saldoPage->setCardInfo(data["key"].toString(), result["type"].toUInt());
 }
 
-void MainWindow::digitClick()
+void MainWindow::logOut()
 {
-    if (input_string.size() == string_size)
-    {
-        input_type = INPUT_NONE;
-        return;
-    }
-
-    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
-    QString digit = clickedButton->text();
-
-    input_string += digit;
-
-    switch(input_type)
-    {
-        case INPUT_CARD_NUMBER:
-            ui->LabelCardInput->setFocus();
-            ui->LabelCardInput->setText(input_string);
-            break;
-        case INPUT_PIN_CODE:
-            ui->LabelPinInput->setFocus();
-            ui->LabelPinInput->setText(input_string);
-            break;
-    }
-}
-
-void MainWindow::resetInput(const QString &text, quint8 _type, quint32 _size)
-{
-    input_string = text;
-    input_type = _type;
-    string_size = _size;
-}
-
-void MainWindow::stopClick()
-{
-    card_number = "";
-    card_pin = "";
-    ui->LabelCardInput->setText("");
-    ui->LabelPinInput->setText("");
-    resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
-}
-
-void MainWindow::okClick()
-{
-    switch(input_type)
-    {
-        case INPUT_CARD_NUMBER:
-            ui->Btn_login->setFocus();
-            resetInput(card_pin, INPUT_NONE, PIN_NUMBER_SIZE);
-            break;
-
-        case INPUT_PIN_CODE:
-            ui->Btn_login->setFocus();
-            resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
-            break;
-    }
-}
-
-void MainWindow::loginClick()
-{
-    card_number = ui->LabelCardInput->text();
-    card_pin = ui->LabelPinInput->text();
-
-    connector.cardLogin(card_number, card_pin);
-}
-
-void MainWindow::netWorkRequest(QString request)
-{
-    ui->Label_error->setStyleSheet("color: red;");
-    ui->Label_error->setText(request);
-}
-
-void MainWindow::on_label_4_linkActivated(const QString &link)
-{
-
+    connector.logoutCard(data["key"].toString());
+    this->close();
 }

@@ -23,46 +23,81 @@ class CardApp extends REST_Controller {
     {
         //enable cors
         header('Access-Control-Allow-Origin: *');
-        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Methods: PUT");
         // Construct the parent class
         parent::__construct();
 
         $this->load->model('Card_model');
+        $this->load->model('Key_model');
     }
 
-    public function get_balance_post()
+    private function check_info($data, $all_types)
     {
-        $card_id = $this->input->post("card_id");
-        if ($card_id == NULL) return;
-
-        //$card_id = $_POST["card_id"];
-
-        $balance = $this->Card_model->get_balance($card_id);
-
-        if ($balance) $this->response((int)$balance[0], REST_Controller::HTTP_OK);
-        else
+        $result = array();
+        foreach ($data as $k)
         {
-            $this->response(['status' => FALSE, 'message' => 'No Bank Account for card'], REST_Controller::HTTP_NOT_FOUND);
+            $v = $this->input->input_stream($k);
+            if ($v == NULL) $this->response(['status' => FALSE, 'message' => 'Need Info'], REST_Controller::HTTP_OK);
+            $result[$k] = $v;
         }
+
+        $card_id = $this->Key_model->validate_key($result['key']);
+        if ($card_id == NULL) $this->response(['status' => FALSE, 'message' => 'Invalid Key'], REST_Controller::HTTP_OK);
+        $result['card_id'] = $card_id;
+
+        if (isset($result['account_type']))
+        {
+            $available_types = $this->Card_model->get_card_type($card_id);
+            if ($available_types < 2 && $available_types != $result['account_type'] && $all_types == FALSE)
+                $this->response(['status' => FALSE, 'message' => 'Invalid Account Type for Card'], REST_Controller::HTTP_OK);
+        }
+
+        return $result;
     }
 
-    public function withdraw_post()
+    public function get_balance_put()
     {
-        $card_id = $this->post("card_id");
-        $amount = $this->post("amount");
+        $data = $this->check_info(array('key', 'account_type'), FALSE);
 
-        if ($card_id == NULL || $amount == NULL) return;
-        /*if (!isset($_POST["card_id"]) || !isset($_POST["amount"])) return;
+        $result = $this->Card_model->get_balance($data['card_id'], $data['account_type']);
 
-        $card_id = $_POST["card_id"];
-        $amount = $_POST["amount"];*/
+        if ($result != NULL) $this->response(['status' => TRUE, 'balance' => $result], REST_Controller::HTTP_OK);
+            else $this->response(['status' => FALSE, 'message' => 'No Bank Account for card'], REST_Controller::HTTP_OK);
+    }
 
-        $response = $this->Card_model->withdraw_money($card_id, $amount);
+    public function get_transacts_put()
+    {
+        $data = $this->check_info(array('key', 'account_type'), TRUE);
 
-        if ((int)$response[0] == 1) $this->response("Withdraw Succesful", REST_Controller::HTTP_OK);
-        else
-        {
-            $this->response(['status' => FALSE, 'message' => 'No Balance on Bank Account'], REST_Controller::HTTP_NOT_FOUND);
-        }
+        $result = $this->Card_model->get_transacts($data['card_id'], $data['account_type']);
+
+        if ($result) $this->response(['status' => TRUE, 'transacts' => $result], REST_Controller::HTTP_OK);
+            else $this->response(['status' => FALSE, 'message' => 'No Transacts Found'], REST_Controller::HTTP_OK);
+    }
+
+    public function withdraw_put()
+    {
+        $data = $this->check_info(array('key', 'account_type', 'amount'), FALSE);
+
+        $result = $this->Card_model->withdraw_money($data['card_id'], $data['account_type'], $data['amount']);
+
+        if ((int)$result == 1) $this->response(['status' => TRUE, 'message' => "Withdraw Succesful"], REST_Controller::HTTP_OK);
+            else $this->response(['status' => FALSE, 'message' => 'No Balance on Bank Account'], REST_Controller::HTTP_OK);
+    }
+
+    public function pay_credit_put()
+    {
+        $data = $this->check_info(array('key', 'amount'), FALSE);
+
+        $available_types = $this->Card_model->get_card_type($data['card_id']);
+        if ($available_types == 1) $this->response(['status' => FALSE, 'message' => 'Invalid Account Type for Card'], REST_Controller::HTTP_OK);
+
+        $credit_loan = $this->Card_model->get_balance($data['card_id'], 1);
+        if ($credit_loan == 0) $this->response(['status' => FALSE, 'message' => 'No Credit Loan to Pay'], REST_Controller::HTTP_OK);
+
+        $result = $this->Card_model->pay_credit($data['card_id'], $data['amount']);
+
+        if ((int)$result == 1) $this->response(['status' => TRUE, 'message' => "Credit Loan Paid Succesfully"], REST_Controller::HTTP_OK);
+            else $this->response(['status' => FALSE, 'message' => 'No Balance on Bank Account'], REST_Controller::HTTP_OK);
     }
 }
