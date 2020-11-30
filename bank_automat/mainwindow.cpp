@@ -79,3 +79,43 @@ void MainWindow::logOut()
     connector.logoutCard();
     this->close();
 }
+
+void MainWindow::on_label_4_linkActivated(const QString &link)
+{
+
+}
+
+void MainWindow::on_btn_NOSTO_clicked()
+{
+
+}
+
+void MainWindow::on_Btn_login_clicked()
+{
+
+}
+
+void MainWindow::on_btn_back_nosto_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_btn_back_saldo_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_btn_back_creditP_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_btn_back_tapaht_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::on_btn_back_toiminto_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
