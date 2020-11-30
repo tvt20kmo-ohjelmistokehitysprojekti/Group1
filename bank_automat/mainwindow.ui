@@ -63,7 +63,11 @@
      <string notr="true">QPushButton 
 {
 	
+
+	font: 16pt &quot;Squada One&quot;;
+=======
 	font: 16pt &quot;Maiandra GD&quot;;
+
     background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
 	border-style: solid;
 	border-color: black;
@@ -74,7 +78,11 @@
 QLabel 
 {
 	
+
+	font: 16pt &quot;Squada One&quot;;
+=======
 	font: 16pt &quot;Maiandra GD&quot;;
+
 	border-style: solid;
 	border-color: black;
 	border-width: 2px;
@@ -87,6 +95,16 @@ QLabel:focus
 }</string>
     </property>
     <property name="currentIndex">
+
+     <number>5</number>
+    </property>
+    <widget class="LoginPage" name="loginPage"/>
+    <widget class="MenuPage" name="menuPage"/>
+    <widget class="SaldoPage" name="saldoPage"/>
+    <widget class="WithdrawPage" name="withdrawPage"/>
+    <widget class="TransactPage" name="transactPage"/>
+    <widget class="PayCreditPage" name="payCreditPage"/>
+=======
      <number>2</number>
     </property>
     <widget class="QWidget" name="login_page">
@@ -1914,6 +1932,7 @@ background-color: rgb(52, 225, 13);</string>
       </layout>
      </widget>
     </widget>
+
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1927,6 +1946,44 @@ background-color: rgb(52, 225, 13);</string>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LoginPage</class>
+   <extends>QWidget</extends>
+   <header>loginpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MenuPage</class>
+   <extends>QWidget</extends>
+   <header>menupage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SaldoPage</class>
+   <extends>QWidget</extends>
+   <header>saldopage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WithdrawPage</class>
+   <extends>QWidget</extends>
+   <header>withdrawpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TransactPage</class>
+   <extends>QWidget</extends>
+   <header>transactpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PayCreditPage</class>
+   <extends>QWidget</extends>
+   <header>paycreditpage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

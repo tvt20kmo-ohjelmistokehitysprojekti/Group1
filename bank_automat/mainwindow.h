@@ -1,19 +1,22 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#define CARD_NUMBER_SIZE     6
-#define PIN_NUMBER_SIZE      4
-
-#define INPUT_NONE           0
-#define INPUT_CARD_NUMBER    1
-#define INPUT_PIN_CODE       2
-
 #include <QMainWindow>
 #include <QRegularExpression>
 #include <QDebug>
+
+#include <QVariantMap>
+#include <QVariant>
+=======
 #include <QPixmap>
 
+
+#include "settings.h"
 #include "network.h"
+#include "loginpage.h"
+#include "withdrawpage.h"
+#include "transactpage.h"
+#include "paycreditpage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,11 +31,9 @@ public:
     ~MainWindow();
 
 private slots:
-    void digitClick();
-    void stopClick();
-    void okClick();
-    void loginClick();
-    void netWorkRequest(QString request);
+    void changePage(qint32 page);               // Sivunvaihto pääikkunan StackedWidgetille
+    void storeData(const QVariantMap &_data);   // Kirjautuessa lähetetyn datan tallennus
+    void logOut();                              // Ohjelman lopetus
 
     void on_label_4_linkActivated(const QString &link);
 
@@ -52,17 +53,8 @@ private slots:
 
 
 private:
-    void initMainButtons();
-    void resetInput(const QString &text, quint8 _type, quint32 _size);
-    bool eventFilter(QObject *object, QEvent *event);
-
-    Ui::MainWindow *ui;
-    Network        connector;
-
-    QString  input_string;
-    QString  card_number;
-    QString  card_pin;
-    quint8   input_type;
-    qint32   string_size;
+    Ui::MainWindow *ui;         // Pääikkunan formi
+    Network        connector;   // Olio ohjelman keskustelulle RestApin kanssa
+    QVariantMap    data;        // Kirjautumistiedot tallennetaan tähän muuttujaan (Apikey, Kortin ID, Kortin Tyyppi, Käyttäjä ID, Etu- ja Sukunumi)
 };
 #endif // MAINWINDOW_H

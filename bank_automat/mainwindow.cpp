@@ -7,124 +7,77 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    card_number = "";
-    card_pin = "";
-    resetInput("", INPUT_NONE, CARD_NUMBER_SIZE);
-    ui->stackedWidget->setCurrentIndex(0);
+    // Lähetetään nettiolion osoite muille olioille
 
-    ui->LabelCardInput->installEventFilter(this);
-    ui->LabelPinInput->installEventFilter(this);
+    ui->loginPage->setNetwork(&connector);
+    ui->saldoPage->setNetwork(&connector);
+    ui->withdrawPage->setNetwork(&connector);
+    ui->transactPage->setNetwork(&connector);
 
-    initMainButtons(); 
+    // Yhdistetään muiden olioiden sivunvaihtosignaali tämän olion sivunvaihtoslottiin,
+    // sekä muut tarvittavat signal-slot yhteydet.
+
+    connect(ui->loginPage, &LoginPage::changePage, this, &MainWindow::changePage);
+    connect(ui->loginPage, &LoginPage::sendData, this, &MainWindow::storeData);
+
+    connect(ui->menuPage, &MenuPage::changePage, this, &MainWindow::changePage);
+    connect(ui->menuPage, &MenuPage::logOut, this, &MainWindow::logOut);
+
+    connect(ui->saldoPage, &SaldoPage::changePage, this, &MainWindow::changePage);
+
+    connect(ui->withdrawPage, &WithdrawPage::changePage, this, &MainWindow::changePage);
+
+    connect(ui->transactPage, &TransactPage::changePage, this, &MainWindow::changePage);
+
+    connect(ui->payCreditPage, &PayCreditPage::changePage, this, &MainWindow::changePage);
+
+    // Käynnistetään ohjelma kirjautumis-sivulla
+
+    changePage(Page::loginPage);
 }
 
 MainWindow::~MainWindow()
 {
+    // Poistetaan formin olio pois muistista
+
     delete ui;
     ui = nullptr;
 }
 
-void MainWindow::initMainButtons()
+void MainWindow::changePage(qint32 page)
 {
-    QList<QPushButton*> temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_\\d"));
-    for(auto &i: temp_list)
-    {
-        connect(i, SIGNAL(pressed()), this, SLOT(digitClick()));
-    }
+    // Vaihdetaan StackedWidgetin indexi osoittamaan haluttua sivua
 
-    connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
-    connect(ui->Btn_OK, SIGNAL(pressed()), this, SLOT(okClick()));
-    connect(ui->Btn_login, SIGNAL(pressed()), this, SLOT(loginClick()));
-
-    connect(&connector, &Network::setRespose, this, &MainWindow::netWorkRequest);
+    ui->stackedWidget->setCurrentIndex(page);
 }
 
-bool MainWindow::eventFilter(QObject *object, QEvent *event)
+void MainWindow::storeData(const QVariantMap &_data)
 {
-    if (event->type() == QEvent::FocusIn)
-    {
-        if (object == ui->LabelCardInput && input_type != INPUT_CARD_NUMBER)
-        {
-            resetInput(card_number, INPUT_CARD_NUMBER, CARD_NUMBER_SIZE);
-        }
-        if (object == ui->LabelPinInput && input_type != INPUT_PIN_CODE)
-        {
-            resetInput(card_pin, INPUT_PIN_CODE, PIN_NUMBER_SIZE);
-        }
-    }
-    return false;
+    // Tallennetaan lähetetyt tiedot, jotta niitä voidaan käyttä muillakin olioilla
+
+    data = _data;
+
+    // Muutetaan datan "result"-kohdan tiedot omaan (name => value) QVariantmappiin,
+    // jotta niistä saadaan arvot ulos muuttujina.
+
+    QVariantMap result = data["result"].toMap();
+
+    // Lähetetään apikey nettioliolle, jota tarvitaan keskutelussa RestApin kanssa
+
+    connector.storeApiKey(data["key"].toString());
+
+    // Lähetetään kortin tyypin tiedot saldosivulle, jotta tiedetään onko kortti
+    // debit, credit vai debit+credit tyyppiä ja mitä saldotietoja sillä voi hakea.
+
+    ui->saldoPage->setCardInfo(result["type"].toUInt());
 }
 
-void MainWindow::digitClick()
+void MainWindow::logOut()
 {
-    if (input_string.size() == string_size)
-    {
-        input_type = INPUT_NONE;
-        return;
-    }
+    // Kirjaudutaan ulos ja lopetetaan ohjelma
 
-    QPushButton *clickedButton = qobject_cast<QPushButton *>(sender());
-    QString digit = clickedButton->text();
-
-    input_string += digit;
-
-    switch(input_type)
-    {
-        case INPUT_CARD_NUMBER:
-            ui->LabelCardInput->setFocus();
-            ui->LabelCardInput->setText(input_string);
-            break;
-        case INPUT_PIN_CODE:
-            ui->LabelPinInput->setFocus();
-            ui->LabelPinInput->setText(input_string);
-            break;
-    }
-}
-
-void MainWindow::resetInput(const QString &text, quint8 _type, quint32 _size)
-{
-    input_string = text;
-    input_type = _type;
-    string_size = _size;
-}
-
-void MainWindow::stopClick()
-{
-    card_number = "";
-    card_pin = "";
-    ui->LabelCardInput->setText("");
-    ui->LabelPinInput->setText("");
-    resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
-}
-
-void MainWindow::okClick()
-{
-    switch(input_type)
-    {
-        case INPUT_CARD_NUMBER:
-            ui->Btn_login->setFocus();
-            resetInput(card_pin, INPUT_NONE, PIN_NUMBER_SIZE);
-            break;
-
-        case INPUT_PIN_CODE:
-            ui->Btn_login->setFocus();
-            resetInput(card_number, INPUT_NONE, CARD_NUMBER_SIZE);
-            break;
-    }
-}
-
-void MainWindow::loginClick()
-{
-    card_number = ui->LabelCardInput->text();
-    card_pin = ui->LabelPinInput->text();
-
-    connector.cardLogin(card_number, card_pin);
-}
-
-void MainWindow::netWorkRequest(QString request)
-{
-    ui->Label_error->setStyleSheet("color: red;");
-    ui->Label_error->setText(request);
+    connector.logoutCard();
+    this->close();
 }
 
 void MainWindow::on_label_4_linkActivated(const QString &link)
