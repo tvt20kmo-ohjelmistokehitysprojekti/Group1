@@ -19,22 +19,25 @@ public:
     Network();
     ~Network();
 
-    QVariantMap loginCard(const QString &card_number, const QString &card_pin);
-    QVariantMap logoutCard(const QString &key);
-    QVariantMap getBalance(const QString &key, quint8 account_type);
-    QVariantMap getTransacts(const QString &key, quint8 account_type);
-    QVariantMap payCredit(const QString &key, quint32 amount);
-    QVariantMap withdrawMoney(const QString &key, quint32 amount, quint8 account_type);
+    void storeApiKey(const QString &key) {apikey = key;}                        // Apikeyn tallennus
+
+    QVariantMap loginCard(const QString &card_number, const QString &card_pin); // Sisäänkirjautuminen kortin tiedoilla
+    QVariantMap logoutCard();                                                   // Uloskirjautuminen lopetettaessa
+    QVariantMap getBalance(quint8 account_type);                                // Saldotietojen hakeminen
+    QVariantMap getTransacts(quint8 account_type);                              // Kortin tapahtumien hakeminen
+    QVariantMap payCredit(quint32 amount);                                      // Creditin velan maksaminen debit-tililtä
+    QVariantMap withdrawMoney(quint32 amount, quint8 account_type);             // Rahan nostaminen tililtä
 
 
 private slots:
-    void authenticationSlot(QNetworkReply *, QAuthenticator *authenticator);
+    void authenticationSlot(QNetworkReply *, QAuthenticator *authenticator);    // Slotti todentamista varten
 
 private:
-    QString makeRequest(QUrl &url, QUrlQuery &query);
-    const QString base_url = "tähän alkuosoite";
+    QString makeRequest(QUrl &url, QUrlQuery &query);                           // Funktio hakujen tekemiseen RestApille
+    const QString base_url = "http://localhost/RestApi/api/";                   // RestApin osoite
 
-    QNetworkAccessManager *manager;
+    QNetworkAccessManager *manager;                                             // Olio nettiyhteyden hallintaan
+    QString                apikey;                                              // Apikey RestApia varten
 };
 
 #endif // NETWORK_H

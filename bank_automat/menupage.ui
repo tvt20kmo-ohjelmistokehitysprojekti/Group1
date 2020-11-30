@@ -58,7 +58,7 @@ QLabel:focus
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_NOSTO">
+  <widget class="QPushButton" name="Btn_Withdraw">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -92,7 +92,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>SALDO</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_PayCredit">
+  <widget class="QPushButton" name="Btn_PayCredit">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -109,7 +109,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>CREDITIN MAKSU</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_EVENTS">
+  <widget class="QPushButton" name="Btn_Transacts">
    <property name="geometry">
     <rect>
      <x>340</x>

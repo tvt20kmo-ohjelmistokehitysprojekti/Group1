@@ -1,5 +1,5 @@
-#ifndef SALDOPAGE_H
-#define SALDOPAGE_H
+#ifndef TRANSACTPAGE_H
+#define TRANSACTPAGE_H
 
 #include <QWidget>
 
@@ -7,16 +7,16 @@
 #include <network.h>
 
 namespace Ui {
-class SaldoPage;
+class TransactPage;
 }
 
-class SaldoPage : public QWidget
+class TransactPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SaldoPage(QWidget *parent = nullptr);
-    ~SaldoPage();
+    explicit TransactPage(QWidget *parent = nullptr);
+    ~TransactPage();
 
     void setNetwork(Network *_connector) {connector = _connector;}
     void setCardInfo(quint32 _card_type) {card_type = _card_type;}
@@ -26,16 +26,14 @@ signals:
 
 private slots:
     void backClick() {emit changePage(Page::menuPage);}
-    void debitClick();
-    void creditClick();
 
 private:
     void initButtons();
 
-    Ui::SaldoPage *ui;
+    Ui::TransactPage *ui;
     Network       *connector;
 
     quint32        card_type;
 };
 
-#endif // SALDOPAGE_H
+#endif // TRANSACTPAGE_H

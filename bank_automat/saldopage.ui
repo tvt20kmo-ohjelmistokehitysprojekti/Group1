@@ -148,7 +148,7 @@ background-color: lightblue;</string>
     <bool>false</bool>
    </property>
    <property name="focusPolicy">
-    <enum>Qt::ClickFocus</enum>
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color : white; 

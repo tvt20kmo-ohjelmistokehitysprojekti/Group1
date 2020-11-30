@@ -24,6 +24,9 @@ signals:
 private slots:
     void logOutClick();
     void saldoClick() {emit changePage(Page::saldoPage);}
+    void withdrawClick() {emit changePage(Page::withdrawPage);}
+    void transactClick() {emit changePage(Page::transactPage);}
+    void payCreditClick() {emit changePage(Page::payCreditPage);}
 
 private:
     void initButtons();
