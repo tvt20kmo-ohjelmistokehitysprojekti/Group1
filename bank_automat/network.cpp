@@ -14,11 +14,12 @@ Network::~Network()
 
 void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
 {
-    // Kirjautumistiedot Basic Authenticationia varten
+    // Kirjautumistiedot Basic Authenticationia vartsen
 
-    qDebug() << "fef";
-    authenticator->setUser("Tähän Käyttäjä");
-    authenticator->setPassword("Tähän Salasana");
+    qDebug() << "Authentication Required";
+
+    authenticator->setUser("Tähän käyttäjä");
+    authenticator->setPassword("Tähän salasana");
 }
 
 QString Network::makeRequest(QUrl &url, QUrlQuery &query)
