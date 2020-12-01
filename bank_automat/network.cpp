@@ -75,7 +75,7 @@ QVariantMap Network::loginCard(const QString &card_number, const QString &card_p
 {
     // Serverin sekä halutun funktion osoite
 
-    QUrl url(base_url);// + "LoginCard/login");
+    QUrl url(base_url + "LoginCard/login");
 
     // Parametrit mitkä lähetetään PUT-metodilla serverille
 
