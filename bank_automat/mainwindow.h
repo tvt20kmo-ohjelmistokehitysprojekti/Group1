@@ -54,7 +54,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;         // Pääikkunan formi
-    Network        connector;   // Olio ohjelman keskustelulle RestApin kanssa
+    Network        *connector;  // Olio ohjelman keskustelulle RestApin kanssa
     QVariantMap    data;        // Kirjautumistiedot tallennetaan tähän muuttujaan (Apikey, Kortin ID, Kortin Tyyppi, Käyttäjä ID, Etu- ja Sukunumi)
 };
 #endif // MAINWINDOW_H

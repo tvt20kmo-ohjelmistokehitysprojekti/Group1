@@ -14,10 +14,12 @@ Network::~Network()
 
 void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
 {
-    // Kirjautumistiedot Basic Authenticationia varten
+    // Kirjautumistiedot Basic Authenticationia vartsen
 
-    authenticator->setUser("Tähän Käyttäjä");
-    authenticator->setPassword("Tähän Salasana");
+    qDebug() << "Authentication Required";
+
+    authenticator->setUser("Tähän käyttäjä");
+    authenticator->setPassword("Tähän salasana");
 }
 
 QString Network::makeRequest(QUrl &url, QUrlQuery &query)
@@ -47,6 +49,7 @@ QString Network::makeRequest(QUrl &url, QUrlQuery &query)
 
     if (reply->error())
     {
+        qDebug() << reply->readAll();
         answer = QString("{ \"status\": false, \"message\": \"Connection Error\"}");
     }
     else answer = reply->readAll();

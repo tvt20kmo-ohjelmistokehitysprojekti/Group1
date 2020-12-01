@@ -6,13 +6,14 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connector = new Network();
 
     // Lähetetään nettiolion osoite muille olioille
 
-    ui->loginPage->setNetwork(&connector);
-    ui->saldoPage->setNetwork(&connector);
-    ui->withdrawPage->setNetwork(&connector);
-    ui->transactPage->setNetwork(&connector);
+    ui->loginPage->setNetwork(connector);
+    ui->saldoPage->setNetwork(connector);
+    ui->withdrawPage->setNetwork(connector);
+    ui->transactPage->setNetwork(connector);
 
     // Yhdistetään muiden olioiden sivunvaihtosignaali tämän olion sivunvaihtoslottiin,
     // sekä muut tarvittavat signal-slot yhteydet.
@@ -40,7 +41,10 @@ MainWindow::~MainWindow()
 {
     // Poistetaan formin olio pois muistista
 
+    delete connector;
     delete ui;
+
+    connector = nullptr;
     ui = nullptr;
 }
 
@@ -64,7 +68,7 @@ void MainWindow::storeData(const QVariantMap &_data)
 
     // Lähetetään apikey nettioliolle, jota tarvitaan keskutelussa RestApin kanssa
 
-    connector.storeApiKey(data["key"].toString());
+    connector->storeApiKey(data["key"].toString());
 
     // Lähetetään kortin tyypin tiedot saldosivulle, jotta tiedetään onko kortti
     // debit, credit vai debit+credit tyyppiä ja mitä saldotietoja sillä voi hakea.
@@ -76,7 +80,7 @@ void MainWindow::logOut()
 {
     // Kirjaudutaan ulos ja lopetetaan ohjelma
 
-    connector.logoutCard();
+    connector->logoutCard();
     this->close();
 }
 
