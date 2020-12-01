@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>926</width>
+    <height>691</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>926</width>
+    <height>691</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>926</width>
+    <height>691</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>926</width>
+    <height>691</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Application</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>911</width>
+      <height>641</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton 
+{
+	
+	font: 16pt &quot;Squada One&quot;;
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	border-radius: 10px;
+}
+
+QLabel 
+{
+	
+	font: 16pt &quot;Squada One&quot;;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	border-radius: 5px;
+}
+
+QLabel:focus
+{
+	border-color: red;
+}</string>
+    </property>
+    <property name="currentIndex">
+     <number>5</number>
+    </property>
+    <widget class="LoginPage" name="loginPage"/>
+    <widget class="MenuPage" name="menuPage"/>
+    <widget class="SaldoPage" name="saldoPage"/>
+    <widget class="WithdrawPage" name="withdrawPage"/>
+    <widget class="TransactPage" name="transactPage"/>
+    <widget class="PayCreditPage" name="payCreditPage"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>926</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LoginPage</class>
+   <extends>QWidget</extends>
+   <header>loginpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MenuPage</class>
+   <extends>QWidget</extends>
+   <header>menupage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SaldoPage</class>
+   <extends>QWidget</extends>
+   <header>saldopage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WithdrawPage</class>
+   <extends>QWidget</extends>
+   <header>withdrawpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TransactPage</class>
+   <extends>QWidget</extends>
+   <header>transactpage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PayCreditPage</class>
+   <extends>QWidget</extends>
+   <header>paycreditpage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
