@@ -16,10 +16,9 @@ void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
 {
     // Kirjautumistiedot Basic Authenticationia vartsen
 
-    qDebug() << "fef";
+    qDebug() << "Authentication Required";
     authenticator->setUser("bank_maatti");
     authenticator->setPassword("9201");
-
 }
 
 QString Network::makeRequest(QUrl &url, QUrlQuery &query)
