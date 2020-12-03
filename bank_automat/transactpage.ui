@@ -44,6 +44,13 @@ QLabel
 QLabel:focus
 {
 	border-color: red;
+}
+
+QTextBrowser
+{
+	font-size: 28px;
+	font-family: Courier;
+	font-weight: bold;
 }</string>
   </property>
   <widget class="QPushButton" name="Btn_Takaisin">
@@ -51,8 +58,6 @@ QLabel:focus
     <rect>
      <x>40</x>
      <y>530</y>
-     <y>510</y>
-     <y>510</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -81,13 +86,13 @@ background-color: rgb(255, 255, 255);</string>
     <string>TILITAPAHTUMAT</string>
    </property>
   </widget>
-  <widget class="QListView" name="accountEventsScreen">
+  <widget class="QTextBrowser" name="Text_transacts">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>90</y>
-     <width>591</width>
-     <height>431</height>
+     <x>130</x>
+     <y>80</y>
+     <width>661</width>
+     <height>391</height>
     </rect>
    </property>
   </widget>

@@ -20,9 +20,10 @@ public:
 
     void setNetwork(Network *_connector) {connector = _connector;}
     void setCardInfo(quint32 _card_type) {card_type = _card_type;}
+    void updateTransactText(Account account_type);
 
 signals:
-    void changePage(quint32 page);
+    void changePage(Page page);
 
 private slots:
     void backClick() {emit changePage(Page::menuPage);}

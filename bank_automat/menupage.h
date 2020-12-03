@@ -18,7 +18,7 @@ public:
     ~MenuPage();
 
 signals:
-    void changePage(quint32 page);
+    void changePage(Page page);
     void logOut();
 
 private slots:

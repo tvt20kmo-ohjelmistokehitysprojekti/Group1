@@ -28,15 +28,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void changePage(qint32 page);               // Sivunvaihto pääikkunan StackedWidgetille
+    void changePage(Page page);                 // Sivunvaihto pääikkunan StackedWidgetille
     void storeData(const QVariantMap &_data);   // Kirjautuessa lähetetyn datan tallennus
     void logOut();                              // Ohjelman lopetus
 
 private:
     virtual void closeEvent(QCloseEvent *event);
+    void fastLogin(Page page, const QString &card_number, const QString &card_pin);  // Funktio nopeaan loggaamiseen sivulle debug-vaiheessa
 
-    Ui::MainWindow *ui;         // Pääikkunan formi
-    Network        *connector;  // Olio ohjelman keskustelulle RestApin kanssa
-    QVariantMap    data;        // Kirjautumistiedot tallennetaan tähän muuttujaan (Apikey, Kortin ID, Kortin Tyyppi, Käyttäjä ID, Etu- ja Sukunumi)
+    Ui::MainWindow *ui;                         // Pääikkunan formi
+    Network        *connector;                  // Olio ohjelman keskustelulle RestApin kanssa
+    QVariantMap    data;                        // Kirjautumistiedot tallennetaan tähän muuttujaan
+                                                // (Apikey, Kortin ID, Kortin Tyyppi, Käyttäjä ID, Etu- ja Sukunumi)
 };
 #endif // MAINWINDOW_H
