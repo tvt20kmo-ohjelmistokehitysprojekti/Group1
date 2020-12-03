@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent)
     // Käynnistetään ohjelma kirjautumis-sivulla
 
     changePage(Page::loginPage);
+
+    // Fastlogin funktiolla voi siirtyä nopeasti halutulle sivulle ilman kirjautumista
+    //fastLogin(Page::transactPage, "Tähän Kortti", "Tähän Pin");
 }
 
 MainWindow::~MainWindow()
@@ -48,7 +51,22 @@ MainWindow::~MainWindow()
     ui = nullptr;
 }
 
-void MainWindow::changePage(qint32 page)
+void MainWindow::fastLogin(Page page, const QString &card_number, const QString &card_pin)
+{
+    storeData(connector->loginCard(card_number, card_pin));
+
+    if (data["status"].toBool() == false)
+    {
+        qDebug() << "Error When Fast Login";
+        changePage(Page::loginPage);
+    }
+    else
+    {
+        changePage(page);
+    }
+}
+
+void MainWindow::changePage(Page page)
 {
     // Vaihdetaan StackedWidgetin indexi osoittamaan haluttua sivua
 
@@ -74,12 +92,26 @@ void MainWindow::storeData(const QVariantMap &_data)
     // debit, credit vai debit+credit tyyppiä ja mitä saldotietoja sillä voi hakea.
 
     ui->saldoPage->setCardInfo(result["type"].toUInt());
+
+    ui->transactPage->updateTransactText(Account::DebitCredit);
 }
 
 void MainWindow::logOut()
 {
-    // Kirjaudutaan ulos ja lopetetaan ohjelma
+    // Lopetetaan ohjelman suoritus
 
-    connector->logoutCard();
     this->close();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    // Kun ohjelma lopetetaan, tarkistetaan ollanko kirjauduttu sisään.
+    // Jos ollaan, kirjaudutaan ulos ja lopetetaan ohjelma, muutoin vain lopetetaan ohjelma.
+
+    if (ui->stackedWidget->currentIndex() == Page::loginPage) event->accept();
+    else
+    {
+        connector->logoutCard();
+        event->accept();
+    }
 }

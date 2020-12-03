@@ -32,7 +32,7 @@ public:
     void setNetwork(Network *_connector) {connector = _connector;}
 
 signals:
-    void changePage(quint32 page);
+    void changePage(Page page);
     void sendData(const QVariantMap &data);
 
 private slots:
