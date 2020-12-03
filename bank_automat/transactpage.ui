@@ -51,10 +51,14 @@ QLabel:focus
     <rect>
      <x>40</x>
 <<<<<<< HEAD
+<<<<<<< HEAD
      <y>530</y>
 =======
      <y>510</y>
 >>>>>>> d3897da... mainwindow closing update
+=======
+     <y>510</y>
+>>>>>>> ea10feb... mainwindow closing update
      <width>211</width>
      <height>31</height>
     </rect>
@@ -84,6 +88,7 @@ background-color: rgb(255, 255, 255);</string>
    </property>
   </widget>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <widget class="QListView" name="accountEventsScreen">
    <property name="geometry">
     <rect>
@@ -92,6 +97,8 @@ background-color: rgb(255, 255, 255);</string>
      <width>591</width>
      <height>431</height>
 =======
+=======
+>>>>>>> ea10feb... mainwindow closing update
   <widget class="QListView" name="listView">
    <property name="geometry">
     <rect>
@@ -99,7 +106,10 @@ background-color: rgb(255, 255, 255);</string>
      <y>140</y>
      <width>851</width>
      <height>321</height>
+<<<<<<< HEAD
 >>>>>>> d3897da... mainwindow closing update
+=======
+>>>>>>> ea10feb... mainwindow closing update
     </rect>
    </property>
   </widget>
