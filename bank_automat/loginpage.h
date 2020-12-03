@@ -42,6 +42,7 @@ private slots:
     void loginClick();
     void hideError();
 
+
 private:
     void initButtons();
     void resetInput(const QString &text, quint8 _type, quint32 _size);
