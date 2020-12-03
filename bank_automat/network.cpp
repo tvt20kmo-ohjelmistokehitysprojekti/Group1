@@ -17,7 +17,6 @@ void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
     // Kirjautumistiedot Basic Authenticationia vartsen
 
     qDebug() << "Authentication Required";
-
     authenticator->setUser("bank_maatti");
     authenticator->setPassword("9201");
 }
@@ -76,7 +75,8 @@ QVariantMap Network::loginCard(const QString &card_number, const QString &card_p
 {
     // Serverin sekä halutun funktion osoite
 
-    QUrl url(base_url + "LoginCard/login");
+    QUrl url(base_url + "LoginCard/login");// + "LoginCard/login");
+
 
     // Parametrit mitkä lähetetään PUT-metodilla serverille
 
