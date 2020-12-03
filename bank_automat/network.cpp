@@ -18,8 +18,8 @@ void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
 
     qDebug() << "Authentication Required";
 
-    authenticator->setUser("Tähän käyttäjä");
-    authenticator->setPassword("Tähän salasana");
+    authenticator->setUser("bank_maatti");
+    authenticator->setPassword("9201");
 }
 
 QString Network::makeRequest(QUrl &url, QUrlQuery &query)
