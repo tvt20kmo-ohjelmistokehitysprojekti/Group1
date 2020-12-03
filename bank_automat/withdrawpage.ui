@@ -66,7 +66,7 @@ background-color:white;
     <string>20€</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_20euros_6">
+  <widget class="QPushButton" name="insert_100euros">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -105,7 +105,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>TAKAISIN</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_20euros_9">
+  <widget class="QPushButton" name="insert_80euros">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -476,7 +476,7 @@ background-color: rgb(52, 225, 13);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="insert_20euros_3">
+  <widget class="QPushButton" name="insert_50euros">
    <property name="geometry">
     <rect>
      <x>270</x>
@@ -498,7 +498,7 @@ background-color:white;
     <string>50€</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_20euros_2">
+  <widget class="QPushButton" name="insert_40euros">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -536,7 +536,7 @@ background-color:white;
     <string>SYÖTÄ NOSTETTAVA SUMMA</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_20euros_8">
+  <widget class="QPushButton" name="insert_150euros">
    <property name="geometry">
     <rect>
      <x>270</x>

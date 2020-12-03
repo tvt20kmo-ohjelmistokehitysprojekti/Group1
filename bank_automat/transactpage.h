@@ -1,5 +1,6 @@
 #ifndef TRANSACTPAGE_H
 #define TRANSACTPAGE_H
+#define INPUT_NONE           0
 
 #include <QWidget>
 
