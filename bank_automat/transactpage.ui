@@ -50,7 +50,11 @@ QLabel:focus
    <property name="geometry">
     <rect>
      <x>40</x>
+<<<<<<< HEAD
      <y>530</y>
+=======
+     <y>510</y>
+>>>>>>> d3897da... mainwindow closing update
      <width>211</width>
      <height>31</height>
     </rect>
@@ -66,8 +70,8 @@ background-color: rgb(255, 255, 255);</string>
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>380</x>
-     <y>40</y>
+     <x>370</x>
+     <y>20</y>
      <width>191</width>
      <height>41</height>
     </rect>
@@ -79,6 +83,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>TILITAPAHTUMAT</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QListView" name="accountEventsScreen">
    <property name="geometry">
     <rect>
@@ -86,6 +91,15 @@ background-color: rgb(255, 255, 255);</string>
      <y>90</y>
      <width>591</width>
      <height>431</height>
+=======
+  <widget class="QListView" name="listView">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>851</width>
+     <height>321</height>
+>>>>>>> d3897da... mainwindow closing update
     </rect>
    </property>
   </widget>

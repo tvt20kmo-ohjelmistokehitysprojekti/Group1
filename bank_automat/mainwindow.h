@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QVariantMap>
 #include <QVariant>
+#include <QCloseEvent>
 
 #include "settings.h"
 #include "network.h"
@@ -32,6 +33,8 @@ private slots:
     void logOut();                              // Ohjelman lopetus
 
 private:
+    virtual void closeEvent(QCloseEvent *event);
+
     Ui::MainWindow *ui;         // Pääikkunan formi
     Network        *connector;  // Olio ohjelman keskustelulle RestApin kanssa
     QVariantMap    data;        // Kirjautumistiedot tallennetaan tähän muuttujaan (Apikey, Kortin ID, Kortin Tyyppi, Käyttäjä ID, Etu- ja Sukunumi)

@@ -78,8 +78,20 @@ void MainWindow::storeData(const QVariantMap &_data)
 
 void MainWindow::logOut()
 {
-    // Kirjaudutaan ulos ja lopetetaan ohjelma
+    // Lopetetaan ohjelman suoritus
 
-    connector->logoutCard();
     this->close();
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    // Kun ohjelma lopetetaan, tarkistetaan ollanko kirjauduttu sisään.
+    // Jos ollaan, kirjaudutaan ulos ja lopetetaan ohjelma, muutoin vain lopetetaan ohjelma.
+
+    if (ui->stackedWidget->currentIndex() == Page::loginPage) event->accept();
+    else
+    {
+        connector->logoutCard();
+        event->accept();
+    }
 }

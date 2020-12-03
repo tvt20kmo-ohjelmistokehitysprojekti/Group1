@@ -105,7 +105,7 @@ QVariantMap Network::loginCard(const QString &card_number, const QString &card_p
 }
 
 QVariantMap Network::logoutCard()
-{
+{    
     QUrl url(base_url + "LoginCard/logout");
 
     QUrlQuery params;
