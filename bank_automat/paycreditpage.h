@@ -1,5 +1,6 @@
 #ifndef PAYCREDITPAGE_H
 #define PAYCREDITPAGE_H
+#define INPUT_NONE           0
 
 #include <QWidget>
 
@@ -29,11 +30,14 @@ private slots:
 
 private:
     void initButtons();
+    void digitClick(QString digit);
 
     Ui::PayCreditPage *ui;
     Network           *connector;
-
-    quint32        card_type;
+    QString         input_string;
+    quint32         card_type;
+    quint8          input_type;
+    qint32          string_size;
 };
 
 #endif // PAYCREDITPAGE_H
