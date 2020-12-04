@@ -85,6 +85,16 @@ class CardApp extends REST_Controller {
             else $this->response(['status' => FALSE, 'message' => 'No Balance on Bank Account'], REST_Controller::HTTP_OK);
     }
 
+    public function get_info_put()
+    {
+        $data = $this->check_info(array('key'), TRUE);
+
+        $result = $this->Card_model->get_info($data['card_id']);
+
+        if ($result) $this->response(['status' => TRUE, 'account_info' => $result[0], 'card_info' => $result[1]], REST_Controller::HTTP_OK);
+            else $this->response(['status' => FALSE, 'message' => 'No Account Info Found'], REST_Controller::HTTP_OK);
+    }
+
     public function pay_credit_put()
     {
         $data = $this->check_info(array('key', 'amount'), FALSE);

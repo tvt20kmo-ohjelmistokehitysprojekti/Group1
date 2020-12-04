@@ -212,7 +212,6 @@ $config['auth_library_function'] = '';
 | Array of usernames and passwords for login, if ldap is configured this is ignored
 |
 */
-
 $config['rest_valid_logins'] = ['bank_maatti' => '9201'];
 
 /*

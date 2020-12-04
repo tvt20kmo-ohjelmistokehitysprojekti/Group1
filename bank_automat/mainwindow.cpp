@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->saldoPage->setNetwork(connector);
     ui->withdrawPage->setNetwork(connector);
     ui->transactPage->setNetwork(connector);
+    ui->infoPage->setNetwork(connector);
 
     // Yhdistetään muiden olioiden sivunvaihtosignaali tämän olion sivunvaihtoslottiin,
     // sekä muut tarvittavat signal-slot yhteydet.
@@ -32,12 +33,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->payCreditPage, &PayCreditPage::changePage, this, &MainWindow::changePage);
 
+    connect(ui->infoPage, &InfoPage::changePage, this, &MainWindow::changePage);
+
     // Käynnistetään ohjelma kirjautumis-sivulla
 
     //changePage(Page::loginPage);
 
     // Fastlogin funktiolla voi siirtyä nopeasti halutulle sivulle ilman kirjautumista
-    fastLogin(Page::menuPage, "111222", "1111");
+    fastLogin(Page::menuPage, "114433", "4444");
 }
 
 MainWindow::~MainWindow()
@@ -94,8 +97,9 @@ void MainWindow::storeData(const QVariantMap &_data)
     quint32 card_type = result["type"].toUInt();
     ui->saldoPage->setCardInfo(card_type);
     ui->menuPage->setCardInfo(card_type);
+    ui->infoPage->setInfo();
 
-    ui->transactPage->updateTransactText(Account::DebitCredit);
+    //ui->transactPage->updateTransactText(Account::DebitCredit);
 }
 
 void MainWindow::logOut()

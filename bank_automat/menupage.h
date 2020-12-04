@@ -29,6 +29,7 @@ private slots:
     void withdrawClick() {emit changePage(Page::withdrawPage);}
     void transactClick() {emit changePage(Page::transactPage);}
     void payCreditClick() {emit changePage(Page::payCreditPage);}
+    void infoClick() {emit changePage(Page::infoPage);}
 
 private:
     void initButtons();

@@ -14,6 +14,7 @@
 #include "withdrawpage.h"
 #include "transactpage.h"
 #include "paycreditpage.h"
+#include "infopage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

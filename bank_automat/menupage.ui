@@ -64,7 +64,7 @@ QLabel:focus
      <x>340</x>
      <y>110</y>
      <width>221</width>
-     <height>301</height>
+     <height>321</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -114,6 +114,17 @@ background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>TAPAHTUMAT</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="Btn_Info">
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>TIEDOT</string>
       </property>
      </widget>
     </item>
