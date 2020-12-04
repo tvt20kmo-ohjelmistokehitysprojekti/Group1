@@ -37,10 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Käynnistetään ohjelma kirjautumis-sivulla
 
-    //changePage(Page::loginPage);
+    changePage(Page::loginPage);
 
     // Fastlogin funktiolla voi siirtyä nopeasti halutulle sivulle ilman kirjautumista
-    fastLogin(Page::menuPage, "114433", "4444");
+    // fastLogin(Page::menuPage, "", "");
 }
 
 MainWindow::~MainWindow()
@@ -99,7 +99,7 @@ void MainWindow::storeData(const QVariantMap &_data)
     ui->menuPage->setCardInfo(card_type);
     ui->infoPage->setInfo();
 
-    //ui->transactPage->updateTransactText(Account::DebitCredit);
+    ui->transactPage->updateTransactText(Account::DebitCredit);
 }
 
 void MainWindow::logOut()
