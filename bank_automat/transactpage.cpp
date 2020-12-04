@@ -48,11 +48,11 @@ void TransactPage::updateTransactText(Account account_type)
         switch(type)
         {
             case Account::Debit:
-                transactString += "  <font color=\"green\">Credit ";
+                transactString += "  <font color=\"blue\">Debit &nbsp;";
                 break;
 
             case Account::Credit:
-                transactString += "  <font color=\"blue\">Debit &nbsp;";
+                transactString += "  <font color=\"green\">Credit ";
                 break;
 
             case Account::DebitCredit:

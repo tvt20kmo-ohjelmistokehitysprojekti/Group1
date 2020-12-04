@@ -169,7 +169,7 @@ QVariantMap Network::getTransacts(quint8 account_type)
 
 QVariantMap Network::withdrawMoney(quint32 amount, quint8 account_type)
 {
-    QUrl url(base_url + "CardApp/withdraw_debit");
+    QUrl url(base_url + "CardApp/withdraw");
 
     QUrlQuery params;
     params.addQueryItem("key", apikey);

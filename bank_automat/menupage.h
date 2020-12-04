@@ -17,6 +17,8 @@ public:
     explicit MenuPage(QWidget *parent = nullptr);
     ~MenuPage();
 
+    void setCardInfo(quint32 _card_type);
+
 signals:
     void changePage(Page page);
     void logOut();

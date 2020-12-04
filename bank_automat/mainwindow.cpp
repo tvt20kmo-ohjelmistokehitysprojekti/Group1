@@ -34,10 +34,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Käynnistetään ohjelma kirjautumis-sivulla
 
-    changePage(Page::loginPage);
+    //changePage(Page::loginPage);
 
     // Fastlogin funktiolla voi siirtyä nopeasti halutulle sivulle ilman kirjautumista
-    //fastLogin(Page::transactPage, "Tähän Kortti", "Tähän Pin");
+    fastLogin(Page::menuPage, "111222", "1111");
 }
 
 MainWindow::~MainWindow()
@@ -91,7 +91,9 @@ void MainWindow::storeData(const QVariantMap &_data)
     // Lähetetään kortin tyypin tiedot saldosivulle, jotta tiedetään onko kortti
     // debit, credit vai debit+credit tyyppiä ja mitä saldotietoja sillä voi hakea.
 
-    ui->saldoPage->setCardInfo(result["type"].toUInt());
+    quint32 card_type = result["type"].toUInt();
+    ui->saldoPage->setCardInfo(card_type);
+    ui->menuPage->setCardInfo(card_type);
 
     ui->transactPage->updateTransactText(Account::DebitCredit);
 }

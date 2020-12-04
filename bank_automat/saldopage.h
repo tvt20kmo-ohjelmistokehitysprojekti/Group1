@@ -19,7 +19,7 @@ public:
     ~SaldoPage();
 
     void setNetwork(Network *_connector) {connector = _connector;}
-    void setCardInfo(quint32 _card_type) {card_type = _card_type;}
+    void setCardInfo(quint32 _card_type);
 
 signals:
     void changePage(Page page);

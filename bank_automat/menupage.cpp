@@ -24,6 +24,12 @@ void MenuPage::initButtons()
     connect(ui->Btn_PayCredit, SIGNAL(pressed()), this, SLOT(payCreditClick()));
 }
 
+void MenuPage::setCardInfo(quint32 _card_type)
+{
+    if (_card_type == Account::Credit) ui->Btn_PayCredit->setVisible(false);
+        else ui->Btn_PayCredit->setVisible(true);
+}
+
 void MenuPage::logOutClick()
 {
     emit logOut();
