@@ -49,8 +49,30 @@ class Card_model extends CI_model
         $this->db->join('card', 'card.account_id = transact.account_id', 'inner');
         $this->db->where('card.card_id', $card_id);
         if ($account_type < 2) $this->db->where('transact.account_type', $account_type);
-	$this->db->order_by('time', 'DESC');
+        $this->db->order_by('time', 'DESC');
         $result = $this->db->get()->result();
+
+        return $result;
+    }
+
+    public function get_info($card_id)
+    {
+        $this->db->select('a.number, a.credit_limit, u1.first_name, u1.last_name');
+        $this->db->from('account a');
+        $this->db->join('card c1', 'c1.account_id = a.account_id', 'inner');
+        $this->db->join('user u1', 'u1.user_id = a.user_id', 'inner');
+        $this->db->where('c1.card_id', $card_id);
+
+        $account = $this->db->get()->result();
+
+        $this->db->select('u2.first_name, u2.last_name, c2.number, c2.type');
+        $this->db->from('user u2');
+        $this->db->join('card c2', 'c2.user_id = u2.user_id', 'inner');
+        $this->db->where('c2.card_id', $card_id);
+
+        $card = $this->db->get()->result();
+
+        $result = array($account,  $card);
 
         return $result;
     }

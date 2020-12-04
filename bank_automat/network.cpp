@@ -169,7 +169,7 @@ QVariantMap Network::getTransacts(quint8 account_type)
 
 QVariantMap Network::withdrawMoney(quint32 amount, quint8 account_type)
 {
-    QUrl url(base_url + "CardApp/withdraw_debit");
+    QUrl url(base_url + "CardApp/withdraw");
 
     QUrlQuery params;
     params.addQueryItem("key", apikey);
@@ -202,6 +202,31 @@ QVariantMap Network::payCredit(quint32 amount)
     // payCredit funktio palauttaa arvot:
     // "status" => true
     // "message" => "Credit Loan Paid Succesfully"
+
+    return c;
+}
+
+QVariantMap Network::getInfo()
+{
+    QUrl url(base_url + "CardApp/get_info");
+
+    QUrlQuery params;
+    params.addQueryItem("key", apikey);
+
+    QJsonDocument a = QJsonDocument::fromJson(makeRequest(url, params).toUtf8());
+    QJsonObject b = a.object();
+    QVariantMap c = b.toVariantMap();
+
+    // getTransacts funktio palauttaa arvot:
+    // "status" => true
+    // "transacts" [
+    //      {
+    //          "time"          => Timestamp
+    //          "amount"        => int
+    //          "account_type"  => unsigend int
+    //      }
+    //      ...
+    //             ]
 
     return c;
 }

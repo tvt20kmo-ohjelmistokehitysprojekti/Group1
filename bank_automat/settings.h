@@ -9,7 +9,8 @@ enum Page {
     saldoPage       = 2,
     withdrawPage    = 3,
     transactPage    = 4,
-    payCreditPage   = 5
+    payCreditPage   = 5,
+    infoPage        = 6
 };
 
 // Numeroarvot pankkikortin eri tyypeille

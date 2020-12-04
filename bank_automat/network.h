@@ -27,6 +27,7 @@ public:
     QVariantMap getTransacts(quint8 account_type);                              // Kortin tapahtumien hakeminen
     QVariantMap payCredit(quint32 amount);                                      // Creditin velan maksaminen debit-tililtä
     QVariantMap withdrawMoney(quint32 amount, quint8 account_type);             // Rahan nostaminen tililtä
+    QVariantMap getInfo();                                                      // Tilin ja kortin tietojen hakeminen
 
 
 private slots:
