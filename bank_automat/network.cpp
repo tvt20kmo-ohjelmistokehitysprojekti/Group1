@@ -90,16 +90,17 @@ QVariantMap Network::loginCard(const QString &card_number, const QString &card_p
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // LoginCard funktio palauttaa arvot:
-    // "status" => bool (kertoo onnistuiko pyyntö)
-    // "key" => string (apikey pyyntöjen tekemiseen serverille)
-    // "result" {
-    //              "card_id"    => unsigend int (kortin ID)
-    //              "type"       => unsigned int (kortin tyyppi)
-    //              "user_id"    => unsigned int (käyttäjän ID)
-    //              "first_name" => string       (etunimi)
-    //              "last_name"  => string       (sukunimi)
-    //          }
+    /*
+    LoginCard funktio palauttaa arvot
+    {
+        "status": true/false,
+        "key": string,
+        "result": {
+            "card_id": unsigned int,
+            "type": undigned int
+        }
+    }
+    */
 
     return c;
 }
@@ -115,9 +116,13 @@ QVariantMap Network::logoutCard()
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // LogoutCard funktio palauttaa arvot:
-    // "status" => true
-    // "message" => "Logged Out"
+    /*
+    LogoutCard funktio palauttaa arvot:
+    {
+        "status": true,
+        "message": "Logged Out"
+    }
+    */
 
     return c;
 }
@@ -134,9 +139,13 @@ QVariantMap Network::getBalance(quint8 account_type)
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // getBalance funktio palauttaa arvot:
-    // "status" => true
-    // "balance" => int
+    /*
+    getBalance funktio palauttaa arvot:
+    {
+        "status": true/false,
+        "balance": int
+    }
+    */
 
     return c;
 }
@@ -153,16 +162,20 @@ QVariantMap Network::getTransacts(quint8 account_type)
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // getTransacts funktio palauttaa arvot:
-    // "status" => true
-    // "transacts" [
-    //      {
-    //          "time"          => Timestamp
-    //          "amount"        => int
-    //          "account_type"  => unsigend int
-    //      }
-    //      ...
-    //             ]
+    /*
+    getTransacts funktio palauttaa arvot:
+    {
+        "status": true/false,
+        "transacts": [
+            {
+                "time": TIMESTAMP,
+                "amount": int,
+                "account_type": undigned int
+            },
+            ...
+        ]
+    }
+    */
 
     return c;
 }
@@ -180,9 +193,13 @@ QVariantMap Network::withdrawMoney(quint32 amount, quint8 account_type)
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // withdrawMoney funktio palauttaa arvot:
-    // "status" => true
-    // "message" => "Withdraw Succesful"
+    /*
+    withdrawMoney funktio palauttaa arvot:
+    {
+        "status": true/false,
+        "message": "Withdraw Succesful"
+    }
+    */
 
     return c;
 }
@@ -199,10 +216,13 @@ QVariantMap Network::payCredit(quint32 amount)
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // payCredit funktio palauttaa arvot:
-    // "status" => true
-    // "message" => "Credit Loan Paid Succesfully"
-
+    /*
+    payCredit funktio palauttaa arvot:
+    {
+        "status": true/false,
+        "message": "Credit Loan Paid Succesfully"
+    }
+    */
     return c;
 }
 
@@ -217,16 +237,28 @@ QVariantMap Network::getInfo()
     QJsonObject b = a.object();
     QVariantMap c = b.toVariantMap();
 
-    // getTransacts funktio palauttaa arvot:
-    // "status" => true
-    // "transacts" [
-    //      {
-    //          "time"          => Timestamp
-    //          "amount"        => int
-    //          "account_type"  => unsigend int
-    //      }
-    //      ...
-    //             ]
+    /*
+    getInfo funktio palauttaa arvot:
+    {
+        "status": true/false,
+        "account_info": [
+            {
+                "number": unsigned int,
+                "credit_limit": unsigned int,
+                "first_name": string,
+                "last_name": string
+            }
+         ],
+        "card_info": [
+            {
+                "first_name": string,
+                "last_name": string,
+                "number": unsigned int,
+                "type": unsigned int
+            }
+         ]
+    }
+    */
 
     return c;
 }
