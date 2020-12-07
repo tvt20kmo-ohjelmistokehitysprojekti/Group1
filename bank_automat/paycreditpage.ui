@@ -380,7 +380,7 @@ background-color: rgb(255, 255, 255);</string>
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="Btn_Takaisin_2">
+  <widget class="QPushButton" name="payCredit">
    <property name="geometry">
     <rect>
      <x>680</x>

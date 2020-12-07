@@ -42,6 +42,7 @@ private slots:
     void on_insert_80euros_clicked();
     void on_insert_100euros_clicked();
     void on_insert_150euros_clicked();
+    void on_payCredit_clicked();
 
 private:
     void initButtons();

@@ -1,5 +1,6 @@
 #include "paycreditpage.h"
 #include "ui_paycreditpage.h"
+#include "network.h"
 
 PayCreditPage::PayCreditPage(QWidget *parent) :
     QWidget(parent),
@@ -19,7 +20,7 @@ PayCreditPage::~PayCreditPage()
 {
     delete ui;
 }
-
+// luetaan mitä näppäintä käyttäjä painaa
 
 void PayCreditPage::initButtons()
 {
@@ -69,6 +70,10 @@ void PayCreditPage::resetInput(const QString &text, quint8 _type, quint32 _size)
     input_type = _type;
     string_size = _size;
 }
+void PayCreditPage::on_payCredit_clicked()
+{
+    QVariantMap maksu = connector->payCredit(Account::Credit);
+}
 
 void PayCreditPage::on_insert_20euros_clicked()
 {
@@ -105,4 +110,6 @@ void PayCreditPage::on_insert_150euros_clicked()
     input_string = "150";
     ui->insert_Credit_Amount->setText(input_string);
 }
+
+
 
