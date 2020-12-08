@@ -26,7 +26,7 @@ void TransactPage::updateTransactText(Account account_type)
 
     if (transacts["status"] == false)
     {
-        ui->Text_transacts->setHtml("Error when loading transacts!");
+        ui->Text_transacts->setHtml("No transacts for account");
         return;
     }
 

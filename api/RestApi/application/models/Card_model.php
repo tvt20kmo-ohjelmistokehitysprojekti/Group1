@@ -46,7 +46,7 @@ class Card_model extends CI_model
     {
         $this->db->select('time, amount, account_type');
         $this->db->from('transact');
-        $this->db->join('card', 'card.account_id = transact.account_id', 'inner');
+        $this->db->join('card', 'card.card_id = transact.card_id', 'inner');
         $this->db->where('card.card_id', $card_id);
         if ($account_type < 2) $this->db->where('transact.account_type', $account_type);
         $this->db->order_by('time', 'DESC');
