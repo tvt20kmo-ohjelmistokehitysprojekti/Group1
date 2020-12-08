@@ -29,6 +29,8 @@ void WithdrawPage::initButtons()
 
     connect(ui->Btn_Takaisin, SIGNAL(pressed()), this, SLOT(backClick()));
     connect(ui->Btn_STOP_3, SIGNAL(pressed()), this, SLOT(stopClick()));
+    connect(ui->Btn_Debit, SIGNAL(pressed()), this, SLOT(debitClick()));
+    connect(ui->Btn_Credit, SIGNAL(pressed()), this, SLOT(creditClick()));
 }
 
 bool WithdrawPage::eventFilter(QObject *object, QEvent *event)
@@ -41,6 +43,16 @@ bool WithdrawPage::eventFilter(QObject *object, QEvent *event)
         }
     }
     return false;
+}
+
+void WithdrawPage::debitClick()
+{
+    QVariantMap nosto = connector->withdrawMoney(100, Account::Debit);
+}
+
+void WithdrawPage::creditClick()
+{
+    QVariantMap nosto = connector->withdrawMoney(100, Account::Credit);
 }
 
 void WithdrawPage::digitClick(QString digit)
@@ -69,7 +81,6 @@ void WithdrawPage::stopClick()
     input_string = "";
     ui->insert_Amount->setText(input_string);
 }
-
 
 void WithdrawPage::on_insert_20euros_clicked()
 {
@@ -105,4 +116,25 @@ void WithdrawPage::on_insert_150euros_clicked()
 {
     input_string = "150";
     ui->insert_Amount->setText(input_string);
+}
+
+void WithdrawPage::setCardInfo(quint32 _card_type)
+{
+    card_type = _card_type;
+
+    switch(card_type)
+    {
+        case Account::Debit:
+            ui->Btn_Debit->setVisible(true);
+            ui->Btn_Credit->setVisible(false);
+            break;
+        case Account::Credit:
+            ui->Btn_Debit->setVisible(false);
+            ui->Btn_Credit->setVisible(true);
+            break;
+        case Account::DebitCredit:
+            ui->Btn_Debit->setVisible(true);
+            ui->Btn_Credit->setVisible(true);
+            break;
+    }
 }
