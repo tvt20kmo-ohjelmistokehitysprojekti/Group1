@@ -1,9 +1,7 @@
 #ifndef WITHDRAWPAGE_H
 #define WITHDRAWPAGE_H
 #define WITHDRAW_SIZE       10
-
 #define INPUT_NONE           0
-
 #define INSERT_AMOUNT        10
 
 #include "settings.h"
@@ -25,7 +23,6 @@ class WithdrawPage : public QWidget
 public:
     explicit WithdrawPage(QWidget *parent = nullptr);
     ~WithdrawPage();
-
     void setNetwork(Network *_connector) {connector = _connector;}
     void setCardInfo(quint32 _card_type);
 
@@ -40,15 +37,10 @@ private slots:
     void creditClick();
 
     void on_insert_20euros_clicked();
-
     void on_insert_40euros_clicked();
-
     void on_insert_50euros_clicked();
-
     void on_insert_80euros_clicked();
-
     void on_insert_100euros_clicked();
-
     void on_insert_150euros_clicked();
 
 private:
@@ -57,16 +49,13 @@ private:
     bool eventFilter(QObject *object, QEvent *event);
 
     Ui::WithdrawPage *ui;
-    Network       *connector;
-    QTimer        timer;
-
-    QString  input_string;
-    QString  insert_Amount;
-    quint8   input_type;
-    qint32   string_size;
-
-
-    quint32  card_type;
+    Network         *connector;
+    QTimer          timer;
+    QString         input_string;
+    QString         insert_Amount;
+    quint8          input_type;
+    qint32          string_size;
+    quint32         card_type;
 };
 
 #endif // WITHDRAWPAGE_H
