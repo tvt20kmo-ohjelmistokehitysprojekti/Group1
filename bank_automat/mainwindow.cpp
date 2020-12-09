@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->withdrawPage->setNetwork(connector);
     ui->transactPage->setNetwork(connector);
     ui->infoPage->setNetwork(connector);
+    ui->payCreditPage->setNetwork(connector);
 
     // Yhdistetään muiden olioiden sivunvaihtosignaali tämän olion sivunvaihtoslottiin,
     // sekä muut tarvittavat signal-slot yhteydet.
@@ -73,6 +74,21 @@ void MainWindow::changePage(Page page)
 {
     // Vaihdetaan StackedWidgetin indexi osoittamaan haluttua sivua
 
+    switch (page)
+    {
+        case Page::transactPage:
+            ui->transactPage->updateTransactText(Account::DebitCredit);
+            break;
+        case Page::payCreditPage:
+            ui->payCreditPage->setCreditInfo();
+            break;
+        case Page::infoPage:
+            ui->infoPage->setInfo();
+            break;
+        default:
+            break;
+    }
+
     ui->stackedWidget->setCurrentIndex(page);
 }
 
@@ -95,11 +111,9 @@ void MainWindow::storeData(const QVariantMap &_data)
     // debit, credit vai debit+credit tyyppiä ja mitä saldotietoja sillä voi hakea.
 
     quint32 card_type = result["type"].toUInt();
+
     ui->saldoPage->setCardInfo(card_type);
     ui->menuPage->setCardInfo(card_type);
-    ui->infoPage->setInfo();
-
-    ui->transactPage->updateTransactText(Account::DebitCredit);
 }
 
 void MainWindow::logOut()

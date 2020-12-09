@@ -25,8 +25,8 @@ public:
     QVariantMap logoutCard();                                                   // Uloskirjautuminen lopetettaessa
     QVariantMap getBalance(quint8 account_type);                                // Saldotietojen hakeminen
     QVariantMap getTransacts(quint8 account_type);                              // Kortin tapahtumien hakeminen
-    QVariantMap payCredit(quint32 amount);                                      // Creditin velan maksaminen debit-tililtä
-    QVariantMap withdrawMoney(quint32 amount, quint8 account_type);             // Rahan nostaminen tililtä
+    QVariantMap payCredit(qint32 amount);                                       // Creditin velan maksaminen debit-tililtä
+    QVariantMap withdrawMoney(qint32 amount, quint8 account_type);              // Rahan nostaminen tililtä
     QVariantMap getInfo();                                                      // Tilin ja kortin tietojen hakeminen
 
 
@@ -35,7 +35,7 @@ private slots:
 
 private:
     QString makeRequest(QUrl &url, QUrlQuery &query);                           // Funktio hakujen tekemiseen RestApille
-    const QString base_url = "http://localhost/RestApi/";                       // RestApin osoite
+    const QString base_url = "http://localhost/RestApi/api/";                   // RestApin osoite
 
     QNetworkAccessManager *manager;                                             // Olio nettiyhteyden hallintaan
     QString                apikey;                                              // Apikey RestApia varten

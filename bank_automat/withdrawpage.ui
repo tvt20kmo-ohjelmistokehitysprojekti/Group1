@@ -44,7 +44,7 @@ QLabel:focus
 	border-color: red;
 }</string>
   </property>
-  <widget class="QPushButton" name="insert_20euros">
+  <widget class="QPushButton" name="Btn_InsertEuros1">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -66,7 +66,7 @@ background-color:white;
     <string>20€</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_100euros">
+  <widget class="QPushButton" name="Btn_InsertEuros5">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -91,8 +91,8 @@ background-color:white;
   <widget class="QPushButton" name="Btn_Takaisin">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>440</y>
+     <x>110</x>
+     <y>490</y>
      <width>211</width>
      <height>31</height>
     </rect>
@@ -105,7 +105,7 @@ background-color: rgb(255, 255, 255);</string>
     <string>TAKAISIN</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_80euros">
+  <widget class="QPushButton" name="Btn_InsertEuros4">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -138,7 +138,7 @@ background-color:white;
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="2" column="2">
-     <widget class="QPushButton" name="Btn_20">
+     <widget class="QPushButton" name="Btn_8">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -166,7 +166,7 @@ background-color:white;
      </widget>
     </item>
     <item row="1" column="2">
-     <widget class="QPushButton" name="Btn_21">
+     <widget class="QPushButton" name="Btn_5">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -194,7 +194,7 @@ background-color:white;
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QPushButton" name="Btn_22">
+     <widget class="QPushButton" name="Btn_9">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -222,7 +222,7 @@ background-color:white;
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="Btn_23">
+     <widget class="QPushButton" name="Btn_4">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -250,7 +250,7 @@ background-color:white;
      </widget>
     </item>
     <item row="0" column="2">
-     <widget class="QPushButton" name="Btn_24">
+     <widget class="QPushButton" name="Btn_2">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -278,7 +278,7 @@ background-color:white;
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QPushButton" name="Btn_25">
+     <widget class="QPushButton" name="Btn_1">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -306,7 +306,7 @@ background-color:white;
      </widget>
     </item>
     <item row="0" column="3">
-     <widget class="QPushButton" name="Btn_26">
+     <widget class="QPushButton" name="Btn_3">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -334,7 +334,7 @@ background-color:white;
      </widget>
     </item>
     <item row="1" column="3">
-     <widget class="QPushButton" name="Btn_27">
+     <widget class="QPushButton" name="Btn_6">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -362,7 +362,7 @@ background-color:white;
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QPushButton" name="Btn_28">
+     <widget class="QPushButton" name="Btn_7">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -390,7 +390,7 @@ background-color:white;
      </widget>
     </item>
     <item row="3" column="2">
-     <widget class="QPushButton" name="Btn_29">
+     <widget class="QPushButton" name="Btn_0">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -418,7 +418,7 @@ background-color:white;
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QPushButton" name="Btn_STOP_3">
+     <widget class="QPushButton" name="Btn_STOP">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
@@ -447,7 +447,7 @@ background-color:white;
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="insert_50euros">
+  <widget class="QPushButton" name="Btn_InsertEuros3">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -469,7 +469,7 @@ background-color:white;
     <string>50€</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_40euros">
+  <widget class="QPushButton" name="Btn_InsertEuros2">
    <property name="geometry">
     <rect>
      <x>190</x>
@@ -507,7 +507,7 @@ background-color:white;
     <string>SYÖTÄ NOSTETTAVA SUMMA</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="insert_150euros">
+  <widget class="QPushButton" name="Btn_InsertEuros6">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -529,57 +529,120 @@ background-color:white;
     <string>150€</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="insert_Amount">
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>330</y>
+     <width>351</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="Btn_WithdrawDebit">
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: lightblue;</string>
+      </property>
+      <property name="text">
+       <string>DEBIT NOSTO</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="Btn_WithdrawCredit">
+      <property name="styleSheet">
+       <string notr="true">selection-color: rgb(0, 170, 255);
+background-color: lightgreen;</string>
+      </property>
+      <property name="text">
+       <string>CREDIT NOSTO</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="Label_Amount">
    <property name="geometry">
     <rect>
      <x>90</x>
      <y>100</y>
-     <width>291</width>
+     <width>280</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>280</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>280</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color : white; 
+color : gray;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Label_Error">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>420</y>
+     <width>381</width>
      <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color : white; 
-color : gray;
-	font: 16pt &quot;Maiandra GD&quot;;
-	border-style: solid;
-	border-color: black;
-	border-width: 2px;
-	border-radius: 5px;</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Btn_Debit">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>436</y>
-     <width>261</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">selection-color: rgb(0, 170, 255);
-background-color: lightblue;</string>
+    <string notr="true"/>
    </property>
    <property name="text">
-    <string>DEBIT NOSTO</string>
+    <string/>
    </property>
-  </widget>
-  <widget class="QPushButton" name="Btn_Credit">
-   <property name="geometry">
-    <rect>
-     <x>530</x>
-     <y>470</y>
-     <width>259</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">selection-color: rgb(0, 170, 255);
-background-color: lightgreen;</string>
-   </property>
-   <property name="text">
-    <string>CREDIT NOSTO</string>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>
