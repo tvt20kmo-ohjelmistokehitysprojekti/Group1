@@ -16,7 +16,7 @@ void Network::authenticationSlot(QNetworkReply *, QAuthenticator *authenticator)
 {
     // Kirjautumistiedot Basic Authenticationia vartsen
 
-    qDebug() << "Authentication Required";
+    //qDebug() << "Authentication Required";
     authenticator->setUser("bank_maatti");
     authenticator->setPassword("9201");
 }
@@ -48,7 +48,7 @@ QString Network::makeRequest(QUrl &url, QUrlQuery &query)
 
     if (reply->error())
     {
-        qDebug() << reply->readAll();
+        //qDebug() << reply->readAll();
         answer = QString("{ \"status\": false, \"message\": \"Connection Error\"}");
     }
     else answer = reply->readAll();

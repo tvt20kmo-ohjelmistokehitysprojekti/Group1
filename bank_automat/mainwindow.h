@@ -36,6 +36,7 @@ private slots:
 private:
     virtual void closeEvent(QCloseEvent *event);
     void fastLogin(Page page, const QString &card_number, const QString &card_pin);  // Funktio nopeaan loggaamiseen sivulle debug-vaiheessa
+    void encryptPinCode(QString pin);           // Funktio kryptatun pin koodin luomiseen tietokantaan
 
     Ui::MainWindow *ui;                         // Pääikkunan formi
     Network        *connector;                  // Olio ohjelman keskustelulle RestApin kanssa

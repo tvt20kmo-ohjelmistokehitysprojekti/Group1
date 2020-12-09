@@ -57,7 +57,7 @@ class CardApp extends REST_Controller {
 
     public function get_balance_put()
     {
-        $data = $this->check_info(array('key', 'account_type'), FALSE);
+        $data = $this->check_info(array('key', 'account_type'), TRUE);
 
         $result = $this->Card_model->get_balance($data['card_id'], $data['account_type']);
 
