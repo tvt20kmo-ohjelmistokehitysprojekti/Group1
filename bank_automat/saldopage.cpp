@@ -24,13 +24,13 @@ void SaldoPage::initButtons()
 void SaldoPage::debitClick()
 {
     QVariantMap saldo = connector->getBalance(Account::Debit);
-    ui->Label_Saldo->setText(saldo["balance"].toString());
+    ui->Label_Saldo->setText(saldo["balance"].toString()  + "€");
 }
 
 void SaldoPage::creditClick()
 {
     QVariantMap saldo = connector->getBalance(Account::Credit);
-    ui->Label_Saldo->setText(saldo["balance"].toString());
+    ui->Label_Saldo->setText(saldo["balance"].toString()  + "€");
 }
 
 void SaldoPage::setCardInfo(quint32 _card_type)

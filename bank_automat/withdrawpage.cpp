@@ -6,12 +6,13 @@ WithdrawPage::WithdrawPage(QWidget *parent) :
     ui(new Ui::WithdrawPage)
 {
     ui->setupUi(this);
+    ui->Label_Error->setVisible(false);
 
-    input_string = "";
-
-    resetInput("", INPUT_NONE, WITHDRAW_SIZE);
-
+    resetInput();
     initButtons();
+
+    timer.setSingleShot(true);
+    connect(&timer, &QTimer::timeout, this, &WithdrawPage::hideError);
 }
 
 WithdrawPage::~WithdrawPage()
@@ -27,95 +28,74 @@ void WithdrawPage::initButtons()
         connect(i, &QPushButton::pressed, this, [=]() {digitClick(i->text());});
     }
 
+    temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_InsertEuros\\d"));
+    for(auto &i: temp_list)
+    {
+        connect(i, &QPushButton::pressed, this, [=]() {eurosClick(i->text());});
+    }
+
     connect(ui->Btn_Takaisin, SIGNAL(pressed()), this, SLOT(backClick()));
-    connect(ui->Btn_STOP_3, SIGNAL(pressed()), this, SLOT(stopClick()));
-    connect(ui->Btn_Debit, SIGNAL(pressed()), this, SLOT(debitClick()));
-    connect(ui->Btn_Credit, SIGNAL(pressed()), this, SLOT(creditClick()));
+    connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
+    connect(ui->Btn_WithdrawDebit, &QPushButton::pressed, this, [=]() {withdrawClick(Account::Debit);});
+    connect(ui->Btn_WithdrawCredit, &QPushButton::pressed, this, [=]() {withdrawClick(Account::Credit);});
 }
 
-bool WithdrawPage::eventFilter(QObject *object, QEvent *event)
+void WithdrawPage::withdrawClick(Account type)
 {
-    if (event->type() == QEvent::FocusIn)
-    {
-        if (object == ui->insert_Amount && input_type != WITHDRAW_SIZE)
-        {
-            resetInput(insert_Amount, INSERT_AMOUNT, WITHDRAW_SIZE);
-        }
-    }
-    return false;
+    QString amount = ui->Label_Amount->text();
+    if (amount == "") return;
+
+    amount.chop(1);
+
+    qDebug() << -(amount.toInt());
+    //return;
+
+    QVariantMap data = connector->withdrawMoney(-(amount.toInt()), type);
+
+    if (data["status"].toBool()) ui->Label_Error->setStyleSheet("color: green");
+        else ui->Label_Error->setStyleSheet("color: red");
+
+    resetInput();
+
+    ui->Label_Error->setText(data["message"].toString());
+    ui->Label_Error->setVisible(true);
+    timer.start(4000);
 }
 
-void WithdrawPage::debitClick()
+void WithdrawPage::digitClick(const QString &digit)
 {
-    QVariantMap nosto = connector->withdrawMoney(100, Account::Debit);
-}
-
-void WithdrawPage::creditClick()
-{
-    QVariantMap nosto = connector->withdrawMoney(100, Account::Credit);
-}
-
-void WithdrawPage::digitClick(QString digit)
-{
-    if (input_string.size() == string_size)
-    {
-        input_type = INPUT_NONE;
-        return;
-    }
+    if (input_string.size() == string_size) return;
+    if (!fresh_input) resetInput();
 
     input_string += digit;
-
-    ui->insert_Amount->setFocus();
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::resetInput(const QString &text, quint8 _type, quint32 _size)
-{
-    input_string = text;
-    input_type = _type;
-    string_size = _size;
+    ui->Label_Amount->setText(input_string  + "€");
 }
 
 void WithdrawPage::stopClick()
 {
+    resetInput();
+}
+
+void WithdrawPage::hideError()
+{
+    ui->Label_Error->setVisible(false);
+}
+
+void WithdrawPage::resetInput()
+{
     input_string = "";
-    ui->insert_Amount->setText(input_string);
+    string_size = INSERT_AMOUNT;
+    fresh_input = true;
+
+    ui->Label_Amount->setText(input_string);
 }
 
-void WithdrawPage::on_insert_20euros_clicked()
+void WithdrawPage::eurosClick(QString amount)
 {
-    input_string = "20";
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::on_insert_40euros_clicked()
-{
-    input_string = "40";
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::on_insert_50euros_clicked()
-{
-    input_string = "50";
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::on_insert_80euros_clicked()
-{
-    input_string = "80";
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::on_insert_100euros_clicked()
-{
-    input_string = "100";
-    ui->insert_Amount->setText(input_string);
-}
-
-void WithdrawPage::on_insert_150euros_clicked()
-{
-    input_string = "150";
-    ui->insert_Amount->setText(input_string);
+    amount.chop(1);
+    input_string = amount;
+    fresh_input = false;
+    ui->Label_Amount->setText(input_string + "€");
 }
 
 void WithdrawPage::setCardInfo(quint32 _card_type)
@@ -125,16 +105,16 @@ void WithdrawPage::setCardInfo(quint32 _card_type)
     switch(card_type)
     {
         case Account::Debit:
-            ui->Btn_Debit->setVisible(true);
-            ui->Btn_Credit->setVisible(false);
+            ui->Btn_WithdrawDebit->setVisible(true);
+            ui->Btn_WithdrawCredit->setVisible(false);
             break;
         case Account::Credit:
-            ui->Btn_Debit->setVisible(false);
-            ui->Btn_Credit->setVisible(true);
+            ui->Btn_WithdrawDebit->setVisible(false);
+            ui->Btn_WithdrawCredit->setVisible(true);
             break;
         case Account::DebitCredit:
-            ui->Btn_Debit->setVisible(true);
-            ui->Btn_Credit->setVisible(true);
+            ui->Btn_WithdrawDebit->setVisible(true);
+            ui->Btn_WithdrawCredit->setVisible(true);
             break;
     }
 }

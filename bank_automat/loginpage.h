@@ -42,7 +42,6 @@ private slots:
     void loginClick();
     void hideError();
 
-
 private:
     void initButtons();
     void resetInput(const QString &text, quint8 _type, quint32 _size);
@@ -52,11 +51,12 @@ private:
     Network       *connector;
     QTimer        timer;
 
-    QString  input_string;
-    QString  card_number;
-    QString  card_pin;
-    quint8   input_type;
-    qint32   string_size;
+    QString       input_string;
+    QString       card_number;
+    QString       card_pin;
+    quint8        input_type;
+    qint32        string_size;
+    bool          fresh_input;
 };
 
 #endif // LOGINPAGE_H

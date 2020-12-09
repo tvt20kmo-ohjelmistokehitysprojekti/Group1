@@ -1,27 +1,26 @@
 #include "paycreditpage.h"
 #include "ui_paycreditpage.h"
-#include "network.h"
 
 PayCreditPage::PayCreditPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::PayCreditPage)
 {
     ui->setupUi(this);
+    ui->Label_Error->setVisible(false);
 
-    input_string = "";
-
-    resetInput("", INPUT_NONE, WITHDRAW_SIZE);
-
+    resetInput();
     initButtons();
+
+    timer.setSingleShot(true);
+    connect(&timer, &QTimer::timeout, this, &PayCreditPage::hideError);
 }
-// Vielä pitäisi hakea velka Credit kortilta ja tulostaa se ruudulle, sekä maksaa velkaa käyttäjän määrittämä summa tietokantaan
 
 PayCreditPage::~PayCreditPage()
 {
     delete ui;
 }
-// luetaan mitä näppäintä käyttäjä painaa
 
+// Yhdistetään näppäimien signaalit oikeisiin slotteihin
 void PayCreditPage::initButtons()
 {
     QList<QPushButton*> temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_\\d"));
@@ -29,86 +28,84 @@ void PayCreditPage::initButtons()
     {
         connect(i, &QPushButton::pressed, this, [=]() {digitClick(i->text());});
     }
+
+    temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_InsertEuros\\d"));
+    for(auto &i: temp_list)
+    {
+        connect(i, &QPushButton::pressed, this, [=]() {eurosClick(i->text());});
+    }
+
     connect(ui->Btn_Takaisin, SIGNAL(pressed()), this, SLOT(backClick()));
-    connect(ui->Btn_STOP_3, SIGNAL(pressed()), this, SLOT(stopClick()));
+    connect(ui->Btn_STOP, SIGNAL(pressed()), this, SLOT(stopClick()));
+    connect(ui->Btn_PayCredit, SIGNAL(pressed()), this, SLOT(payCreditClick()));
 }
 
-bool PayCreditPage::eventFilter(QObject *object, QEvent *event)
+void PayCreditPage::setCreditInfo()
 {
-    if (event->type() == QEvent::FocusIn)
+    QVariantMap credit_loan = connector->getBalance(Account::Credit);
+
+    if (credit_loan["balance"].isValid())
     {
-        if (object == ui->insert_Credit_Amount && input_type != WITHDRAW_SIZE)
-        {
-            resetInput(insert_Amount, INSERT_AMOUNT, WITHDRAW_SIZE);
-        }
+        if (credit_loan["balance"].toInt() < 0) ui->Label_CreditSaldo->setStyleSheet("background-color : white; color: red;");
+            else ui->Label_CreditSaldo->setStyleSheet("background-color : white; color: green;");
+
+        ui->Label_CreditSaldo->setText(credit_loan["balance"].toString() + "€");
     }
-    return false;
 }
 
-void PayCreditPage::digitClick(QString digit)
+void PayCreditPage::hideError()
 {
-    if (input_string.size() == string_size)
-    {
-        input_type = INPUT_NONE;
-        return;
-    }
+    ui->Label_Error->setVisible(false);
+}
+
+void PayCreditPage::digitClick(const QString &digit)
+{
+    if (input_string.size() == string_size) return;
+    if (!fresh_input) resetInput();
 
     input_string += digit;
-
-    ui->insert_Credit_Amount->setFocus();
-    ui->insert_Credit_Amount->setText(input_string);
+    ui->Label_Amount->setText(input_string  + "€");
 }
 void PayCreditPage::stopClick()
 {
+    resetInput();
+}
+
+void PayCreditPage::resetInput()
+{
     input_string = "";
-    ui->insert_Credit_Amount->setText(input_string);
+    string_size = INSERT_AMOUNT;
+    fresh_input = true;
+
+    ui->Label_Amount->setText(input_string);
 }
 
-void PayCreditPage::resetInput(const QString &text, quint8 _type, quint32 _size)
+void PayCreditPage::payCreditClick()
 {
-    input_string = text;
-    input_type = _type;
-    string_size = _size;
-}
-void PayCreditPage::on_payCredit_clicked()
-{
-    QVariantMap maksu = connector->payCredit(Account::Credit);
+    QString amount = ui->Label_Amount->text();
+    if (amount == "") return;
+
+    amount.chop(1);
+
+    QVariantMap data = connector->payCredit(amount.toInt());
+    setCreditInfo();
+
+    if (data["status"].toBool()) ui->Label_Error->setStyleSheet("color: green");
+        else ui->Label_Error->setStyleSheet("color: red");
+
+    resetInput();
+
+    ui->Label_Error->setText(data["message"].toString());
+    ui->Label_Error->setVisible(true);
+    timer.start(4000);
 }
 
-void PayCreditPage::on_insert_20euros_clicked()
+void PayCreditPage::eurosClick(QString amount)
 {
-    input_string = "20";
-    ui->insert_Credit_Amount->setText(input_string);
-}
-
-void PayCreditPage::on_insert_40euros_clicked()
-{
-    input_string = "40";
-    ui->insert_Credit_Amount->setText(input_string);
-}
-
-void PayCreditPage::on_insert_50euros_clicked()
-{
-    input_string = "50";
-    ui->insert_Credit_Amount->setText(input_string);
-}
-
-void PayCreditPage::on_insert_80euros_clicked()
-{
-    input_string = "80";
-    ui->insert_Credit_Amount->setText(input_string);
-}
-
-void PayCreditPage::on_insert_100euros_clicked()
-{
-    input_string = "100";
-    ui->insert_Credit_Amount->setText(input_string);
-}
-
-void PayCreditPage::on_insert_150euros_clicked()
-{
-    input_string = "150";
-    ui->insert_Credit_Amount->setText(input_string);
+    amount.chop(1);
+    input_string = amount;
+    fresh_input = false;
+    ui->Label_Amount->setText(input_string + "€");
 }
 
 

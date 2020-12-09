@@ -68,6 +68,12 @@ void LoginPage::digitClick(QString digit)
         return;
     }
 
+    if (!fresh_input)
+    {
+        resetInput("", input_type, string_size);
+        fresh_input = false;
+    }
+
     input_string += digit;
 
     switch(input_type)
@@ -88,6 +94,7 @@ void LoginPage::resetInput(const QString &text, quint8 _type, quint32 _size)
     input_string = text;
     input_type = _type;
     string_size = _size;
+    fresh_input = true;
 }
 
 void LoginPage::stopClick()
