@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     // fastLogin(Page::menuPage, "", "");
 
     // EncryptPinCode funktiolla voi luoda haluamansa pin koodin tietokantaan tallentamiseksi
-    // encryptPinCode("5555");
+    // encryptPinCode("5550");
 }
 
 MainWindow::~MainWindow()
@@ -75,7 +75,7 @@ void MainWindow::fastLogin(Page page, const QString &card_number, const QString 
 
 void MainWindow::encryptPinCode(QString pin)
 {
-    QByteArray psw_salt (pin.toStdString().c_str()) ;
+    QByteArray psw_salt(pin.toStdString().c_str());
     psw_salt.append("bankmaatti") ;
     QString hashed_password = QCryptographicHash::hash(psw_salt, QCryptographicHash::Sha256).toHex();
     qDebug() << "Encrypted pin code: " <<  hashed_password;
