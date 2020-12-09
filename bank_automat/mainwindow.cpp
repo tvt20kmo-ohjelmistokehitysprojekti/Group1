@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Fastlogin funktiolla voi siirtyä nopeasti halutulle sivulle ilman kirjautumista
     // fastLogin(Page::menuPage, "", "");
+
+    // EncryptPinCode funktiolla voi luoda haluamansa pin koodin tietokantaan tallentamiseksi
+    // encryptPinCode("5555");
 }
 
 MainWindow::~MainWindow()
@@ -68,6 +71,14 @@ void MainWindow::fastLogin(Page page, const QString &card_number, const QString 
     {
         changePage(page);
     }
+}
+
+void MainWindow::encryptPinCode(QString pin)
+{
+    QByteArray psw_salt (pin.toStdString().c_str()) ;
+    psw_salt.append("bankmaatti") ;
+    QString hashed_password = QCryptographicHash::hash(psw_salt, QCryptographicHash::Sha256).toHex();
+    qDebug() << "Encrypted pin code: " <<  hashed_password;
 }
 
 void MainWindow::changePage(Page page)
@@ -113,6 +124,7 @@ void MainWindow::storeData(const QVariantMap &_data)
     quint32 card_type = result["type"].toUInt();
 
     ui->saldoPage->setCardInfo(card_type);
+    ui->withdrawPage->setCardInfo(card_type);
     ui->menuPage->setCardInfo(card_type);
 }
 

@@ -107,6 +107,3 @@ void PayCreditPage::eurosClick(QString amount)
     fresh_input = false;
     ui->Label_Amount->setText(input_string + "€");
 }
-
-
-

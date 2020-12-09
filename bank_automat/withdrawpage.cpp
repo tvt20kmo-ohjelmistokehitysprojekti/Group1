@@ -47,8 +47,7 @@ void WithdrawPage::withdrawClick(Account type)
 
     amount.chop(1);
 
-    qDebug() << -(amount.toInt());
-    //return;
+    //qDebug() << -(amount.toInt());
 
     QVariantMap data = connector->withdrawMoney(-(amount.toInt()), type);
 

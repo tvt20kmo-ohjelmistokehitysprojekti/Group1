@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 29.11.2020 klo 16:56
+-- Generation Time: 09.12.2020 klo 11:24
 -- Palvelimen versio: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -109,20 +109,19 @@ DELIMITER ;
 CREATE TABLE `account` (
   `account_id` int(10) UNSIGNED NOT NULL,
   `number` int(10) UNSIGNED DEFAULT NULL,
-  `type` tinyint(1) DEFAULT '0',
   `balance` int(11) NOT NULL DEFAULT '0',
   `credit_balance` int(10) NOT NULL DEFAULT '0',
   `credit_limit` int(11) DEFAULT '0',
-  `user_id` int(10) UNSIGNED NOT NULL
+  `user_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Vedos taulusta `account`
 --
 
-INSERT INTO `account` (`account_id`, `number`, `type`, `balance`, `credit_balance`, `credit_limit`, `user_id`) VALUES
-(2, NULL, 0, 4586, 0, 0, 1),
-(3, 122233, 1, 850, 0, 1000, 3);
+INSERT INTO `account` (`account_id`, `number`, `balance`, `credit_balance`, `credit_limit`, `user_id`) VALUES
+(4, 123456, 2500, -100, 5000, 1),
+(5, 554433, 99950, 0, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -134,8 +133,10 @@ CREATE TABLE `apikey` (
   `key_id` int(10) UNSIGNED NOT NULL,
   `value` varchar(32) DEFAULT NULL,
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `card_id` int(10) UNSIGNED NOT NULL
+  `card_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
 
 --
 -- Rakenne taululle `card`
@@ -144,9 +145,9 @@ CREATE TABLE `apikey` (
 CREATE TABLE `card` (
   `card_id` int(10) UNSIGNED NOT NULL,
   `number` int(10) UNSIGNED NOT NULL,
-  `pin` int(10) UNSIGNED NOT NULL,
+  `pin` varchar(64) CHARACTER SET ascii NOT NULL,
   `type` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `account_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -155,9 +156,8 @@ CREATE TABLE `card` (
 --
 
 INSERT INTO `card` (`card_id`, `number`, `pin`, `type`, `user_id`, `account_id`) VALUES
-(1, 123456, 1111, 0, 0, 0),
-(2, 112233, 1234, 0, 1, 2),
-(3, 111222, 1111, 2, 2, 3);
+(4, 333333, 'e77de0af4684bd44a8667c72ce84bc779a6801b8f9b3a269bb0eb2eb6a8c9387', 1, 2, 4),
+(6, 111222, '201b9fac06620e759e9267582496866510a9fd26994658fd227b31fe2103330f', 2, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -170,8 +170,8 @@ CREATE TABLE `transact` (
   `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `amount` int(11) NOT NULL,
   `account_type` tinyint(1) NOT NULL,
-  `card_id` int(10) UNSIGNED NOT NULL,
-  `account_id` int(10) UNSIGNED NOT NULL
+  `card_id` int(10) UNSIGNED DEFAULT NULL,
+  `account_id` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -179,12 +179,9 @@ CREATE TABLE `transact` (
 --
 
 INSERT INTO `transact` (`transact_id`, `time`, `amount`, `account_type`, `card_id`, `account_id`) VALUES
-(25, '2020-11-23 12:46:27', 20, 0, 2, 2),
-(26, '2020-11-23 12:46:52', -40, 0, 2, 2),
-(27, '2020-11-23 13:40:05', 566, 0, 2, 2),
-(28, '2020-11-23 17:40:34', 566, 0, 2, 2),
-(29, '2020-11-24 13:59:23', 200, 0, 2, 2);
-
+(77, '2020-12-09 10:49:07', -100, 1, 4, 4),
+(78, '2020-12-09 10:49:41', -100, 0, 6, 5),
+(79, '2020-12-09 11:22:51', -50, 0, 6, 5);
 
 -- --------------------------------------------------------
 
@@ -204,7 +201,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `first_name`, `last_name`) VALUES
 (1, 'Erkki', 'Pertti'),
-(2, 'Matti', 'Tattila');
+(2, 'Matti', 'Tattila'),
+(3, 'Veijo', 'Teijola');
 
 --
 -- Indexes for dumped tables
@@ -222,20 +220,25 @@ ALTER TABLE `account`
 --
 ALTER TABLE `apikey`
   ADD PRIMARY KEY (`key_id`),
-  ADD UNIQUE KEY `value` (`value`);
+  ADD UNIQUE KEY `value` (`value`),
+  ADD KEY `card_key` (`card_id`);
 
 --
 -- Indexes for table `card`
 --
 ALTER TABLE `card`
   ADD PRIMARY KEY (`card_id`),
-  ADD UNIQUE KEY `number` (`number`);
+  ADD UNIQUE KEY `number` (`number`),
+  ADD KEY `user_card` (`user_id`),
+  ADD KEY `account_card` (`account_id`);
 
 --
 -- Indexes for table `transact`
 --
 ALTER TABLE `transact`
-  ADD PRIMARY KEY (`transact_id`);
+  ADD PRIMARY KEY (`transact_id`),
+  ADD KEY `card_transact` (`card_id`),
+  ADD KEY `account_transtact` (`account_id`);
 
 --
 -- Indexes for table `user`
@@ -251,31 +254,61 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `account_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `apikey`
 --
 ALTER TABLE `apikey`
-  MODIFY `key_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `key_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
-  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `card_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `transact`
 --
 ALTER TABLE `transact`
-  MODIFY `transact_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `transact_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Rajoitteet vedostauluille
+--
+
+--
+-- Rajoitteet taululle `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `user_account` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Rajoitteet taululle `apikey`
+--
+ALTER TABLE `apikey`
+  ADD CONSTRAINT `card_key` FOREIGN KEY (`card_id`) REFERENCES `card` (`card_id`) ON DELETE CASCADE;
+
+--
+-- Rajoitteet taululle `card`
+--
+ALTER TABLE `card`
+  ADD CONSTRAINT `account_card` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_card` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Rajoitteet taululle `transact`
+--
+ALTER TABLE `transact`
+  ADD CONSTRAINT `account_transtact` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `card_transact` FOREIGN KEY (`card_id`) REFERENCES `card` (`card_id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 DELIMITER $$
 --
