@@ -57,7 +57,7 @@ QString Network::makeRequest(QUrl &url, QUrlQuery &query)
 
     reply->deleteLater();
 
-    qDebug() << answer;     // Vastauksen tulostaminen konsoliin debuggausta varten (poistetaan lopullisesta versiosta)
+    //qDebug() << answer;     // Vastauksen tulostaminen konsoliin debuggausta varten (poistetaan lopullisesta versiosta)
 
     // RestApin vastaus on JSON-dokumentti, joka palautetaan QString-muodossa käsittelyä varten
 
