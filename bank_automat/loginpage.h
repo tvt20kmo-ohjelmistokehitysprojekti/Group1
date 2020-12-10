@@ -8,7 +8,9 @@
 #include <QTimer>
 
 #include "settings.h"
-#include <network.h>
+#include "network.h"
+
+// vakioiden määrittely
 
 #define CARD_NUMBER_SIZE     6
 #define PIN_NUMBER_SIZE      4
@@ -29,10 +31,10 @@ public:
     explicit LoginPage(QWidget *parent = nullptr);
     ~LoginPage();
 
-    void setNetwork(Network *_connector) {connector = _connector;}
+    void setNetwork(Network *_connector) {connector = _connector;}  // Network-olion ositteen tallennus
 
 signals:
-    void changePage(Page page);
+    void changePage(Page page);                                     // Sivunvaihtosignaali pääikkunalle
     void sendData(const QVariantMap &data);
 
 private slots:
@@ -49,14 +51,14 @@ private:
 
     Ui::LoginPage *ui;
     Network       *connector;
-    QTimer        timer;
+    QTimer        timer;                // Ajastin serverin lähettämän "message"-tekstin näyttämiseen
 
-    QString       input_string;
+    QString       input_string;         // merkkijono aktiiviselle kyselylle
     QString       card_number;
     QString       card_pin;
-    quint8        input_type;
-    qint32        string_size;
-    bool          fresh_input;
+    quint8        input_type;           // aktiivisen kyselyn tyyppi(0 = ei mitään, 1 = kortin numero, 2 = pin koodi)
+    qint32        string_size;          // merkkijonon maksimipituus(kortin numero = 6, pin koodi = 4)
+    bool          fresh_input;          // boolean kyselyn nollaamiselle
 };
 
 #endif // LOGINPAGE_H

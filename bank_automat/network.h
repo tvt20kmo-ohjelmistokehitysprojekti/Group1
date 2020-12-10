@@ -35,7 +35,7 @@ private slots:
 
 private:
     QString makeRequest(QUrl &url, QUrlQuery &query);                           // Funktio hakujen tekemiseen RestApille
-    //const QString base_url = "http://localhost/RestApi/api/";                 // RestApin osoite
+    const QString base_url = "http://localhost/RestApi/api/";                   // RestApin osoite
 
     QNetworkAccessManager *manager;                                             // Olio nettiyhteyden hallintaan
     QString                apikey;                                              // Apikey RestApia varten
