@@ -23,12 +23,14 @@ class WithdrawPage : public QWidget
 public:
     explicit WithdrawPage(QWidget *parent = nullptr);
     ~WithdrawPage();
-    void setNetwork(Network *_connector) {connector = _connector;}
-    void setCardInfo(quint32 _card_type);
+    void setNetwork(Network *_connector) {connector = _connector;}  // Network-olion ositteen tallennus
+    void setCardInfo(quint32 _card_type);                           // Pankkikortin tyypin tallennus
 
 signals:
-    void changePage(Page page);
+    void changePage(Page page);                                     // Sivunvaihtosignaali pääikkunalle
 
+
+// Funktiot mitä kutsutaan eri nappeja painaessa
 private slots:
     void backClick() {emit changePage(Page::menuPage);}
     void digitClick(const QString &digit);

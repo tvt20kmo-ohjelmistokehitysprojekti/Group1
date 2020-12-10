@@ -11,6 +11,9 @@ PayCreditPage::PayCreditPage(QWidget *parent) :
     resetInput();
     initButtons();
 
+    // Määritetään ajastin laskemaan aikaa vain kerran (ei aloiteta uudelleen ajan nollautuessa)
+    // ja yhdistetään timeout-signaali hideError-funktioon.
+
     timer.setSingleShot(true);
     connect(&timer, &QTimer::timeout, this, &PayCreditPage::hideError);
 }
@@ -21,6 +24,7 @@ PayCreditPage::~PayCreditPage()
 }
 
 // Yhdistetään näppäimien signaalit oikeisiin slotteihin
+
 void PayCreditPage::initButtons()
 {
     QList<QPushButton*> temp_list = this->findChildren<QPushButton*>(QRegularExpression("Btn_\\d"));

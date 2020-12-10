@@ -15,6 +15,8 @@ MenuPage::~MenuPage()
     delete ui;
 }
 
+// Menun nappien signaalien yhdistäminen oikeisiin slotteihin
+
 void MenuPage::initButtons()
 {
     connect(ui->Btn_LogOut, SIGNAL(pressed()), this, SLOT(logOutClick()));
@@ -25,8 +27,12 @@ void MenuPage::initButtons()
     connect(ui->Btn_Info, SIGNAL(pressed()), this, SLOT(infoClick()));
 }
 
+// Kortin tyypin tallennus
+
 void MenuPage::setCardInfo(quint32 _card_type)
 {
+    // Määritetään nappien näkyvyys kortin tyypin perusteella
+
     if (_card_type == Account::Credit) ui->Btn_PayCredit->setVisible(false);
         else ui->Btn_PayCredit->setVisible(true);
 }

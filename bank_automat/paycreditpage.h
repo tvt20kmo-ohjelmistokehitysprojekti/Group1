@@ -9,7 +9,7 @@
 #include <QVariantMap>
 
 #include "settings.h"
-#include <network.h>
+#include "network.h"
 
 #define INSERT_AMOUNT       10
 
@@ -24,12 +24,13 @@ class PayCreditPage : public QWidget
 public:
     explicit PayCreditPage(QWidget *parent = nullptr);
     ~PayCreditPage();
-    void setNetwork(Network *_connector) {connector = _connector;}
-    void setCreditInfo();
+    void setNetwork(Network *_connector) {connector = _connector;}  // Network-olion ositteen tallennus
+    void setCreditInfo();                                           // Pankkikortin tyypin tallennus
 
 signals:
-    void changePage(Page page);
+    void changePage(Page page);                                     // Sivunvaihtosignaali pääikkunalle
 
+// Funktiot mitä kutsutaan eri nappeja painaessa
 private slots:
     void backClick() {emit changePage(Page::menuPage);}
     void digitClick(const QString &digit);

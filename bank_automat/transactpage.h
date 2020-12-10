@@ -1,11 +1,10 @@
 #ifndef TRANSACTPAGE_H
 #define TRANSACTPAGE_H
-#define INPUT_NONE           0
 
 #include <QWidget>
 
 #include "settings.h"
-#include <network.h>
+#include "network.h"
 
 namespace Ui {
 class TransactPage;
@@ -19,12 +18,12 @@ public:
     explicit TransactPage(QWidget *parent = nullptr);
     ~TransactPage();
 
-    void setNetwork(Network *_connector) {connector = _connector;}
-    void setCardInfo(quint32 _card_type) {card_type = _card_type;}
+    void setNetwork(Network *_connector) {connector = _connector;}  // Network-olion ositteen tallennus
+    void setCardInfo(quint32 _card_type) {card_type = _card_type;}  // Pankkikortin tyypin tallennus
     void updateTransactText(Account account_type);
 
 signals:
-    void changePage(Page page);
+    void changePage(Page page);                                     // Sivunvaihtosignaali pääikkunalle
 
 private slots:
     void backClick() {emit changePage(Page::menuPage);}

@@ -60,6 +60,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::fastLogin(Page page, const QString &card_number, const QString &card_pin)
 {
+    // Kirjaudutaan sisään ja tallennetaan serverin vastaus. Jos kirjautuminen onnistui, siirrytään
+    // Halutulle sivulle, muuten avataan kirjautumissivu.
+
     storeData(connector->loginCard(card_number, card_pin));
 
     if (data["status"].toBool() == false)
@@ -83,7 +86,7 @@ void MainWindow::encryptPinCode(QString pin)
 
 void MainWindow::changePage(Page page)
 {
-    // Vaihdetaan StackedWidgetin indexi osoittamaan haluttua sivua
+    // Kutsutaan vaihdettavan sivun päivitysfunktioita tietojen päivittämiseksi tietokannasta
 
     switch (page)
     {
@@ -99,6 +102,8 @@ void MainWindow::changePage(Page page)
         default:
             break;
     }
+
+    // Vaihdetaan StackedWidgetin indexi osoittamaan haluttua sivua
 
     ui->stackedWidget->setCurrentIndex(page);
 }

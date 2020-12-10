@@ -17,12 +17,13 @@ public:
     explicit MenuPage(QWidget *parent = nullptr);
     ~MenuPage();
 
-    void setCardInfo(quint32 _card_type);
+    void setCardInfo(quint32 _card_type);           // Pankkikortin tyypin tallennus
 
 signals:
-    void changePage(Page page);
+    void changePage(Page page);                     // Sivunvaihtosignaali pääikkunalle
     void logOut();
 
+    // Funktiot mitä kutsutaan eri nappeja painaessa
 private slots:
     void logOutClick();
     void saldoClick() {emit changePage(Page::saldoPage);}
